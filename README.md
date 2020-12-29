@@ -21,8 +21,10 @@ I also use a rofi powermenu that I got from [here](https://github.com/adi1090x/r
 # Using
 ### Start by cloning the repo
 `git clone https://github.com/Shizzledoink/dotfiles.git`
-### Install Fonts my moving or copying them to ~/.local/share/fonts:
+### Install Fonts by moving or copying them to ~/.local/share/fonts:
 `cp dotfiles/fonts/* ~/.local/share/fonts/`
+### Move scripts to your home directory
+`cp -r dotfiles/{.i3nw/,.prodscripts/} ~/`
 ### Move or copy everything in .config to your .config folder
 #### (Note that this overwrites your current configs so you may want to do a backup)
 `cp -r dotfiles/.config/* ~/.config/`
