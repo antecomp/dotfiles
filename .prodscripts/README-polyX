@@ -1,0 +1,4 @@
+There is no saftey set by default for the i3 control polybar button scripts
+because of this, in the polybar config the command runs as timeout Xs <script>
+This will close the command if it doesn't finish in X seconds.
+Otherwise the script will not close until a window is selected.

@@ -1,0 +1,2 @@
+#!/bin/bash
+until xwininfo -int | grep Window | head -1 | cut -b 22-30 | ( read WINXID; i3-msg [id="$WINXID"] move to scratchpad; ); do : ; done

@@ -1,0 +1,2 @@
+This is "Productivity Scripts"
+This is where I mainly keep scripts regarding controlling my i3.

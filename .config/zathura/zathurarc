@@ -1,0 +1,37 @@
+# Omnis shitty zathura config, eat shit evince.
+#
+# Recolor PDFs to dark theme by default
+set recolor "true"
+set recolor-keephue "true"
+#
+# Note to self: Press "s" to have the document cover 100% screen width, I dont wanna config it and I prefer the zoomed out.
+#
+# Zathura ""supports"" transparent backgrounds, but I couldn't get it to work
+# Below is the config for if you want to attempt zathuras transparency
+# I use comptons class targetter to add transparency for now
+#
+#
+# set recolor "true"
+#set default-bg rgba(0,0,0,0.7)
+#set recolor-lightcolor rgba(0,0,0,0)
+#set adjust-open "width"
+#
+#
+# -----------------  UI Color Config -----------------------
+#
+# Command Bar Colours 
+set inputbar-bg 		"black"
+set inputbar-fg 		"#5dacbc"
+# Dark Mode Foreground
+set recolor-darkcolor 		"#cecece"
+# set recolor-lightcolor "#000000" < Commented because default anyway
+# Completion Mode Colours
+set completion-bg 		"#080808"
+set completion-fg 		"#5dacbc"
+# Completion-group are the titlebars for the sections, Ex: "Recent Documents"
+set completion-group-bg 	"#0b0b0b"
+set completion-group-fg 	"#67bfd0"
+set completion-highlight-bg	"#71d4e5"
+set completion-highlight-fg	"#23232d"
+# Mouse-Highlight Colour
+set highlight-color		"#3e737d"

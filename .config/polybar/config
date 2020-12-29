@@ -1,0 +1,373 @@
+[fonts]
+;; opensansreg = DroidSans:Regular:size=8
+opensansreg = Kiona:Regular:size=8
+;; opensanssemibold = DroidSans:SemiBold:size=8
+opensanssemibold = Kiona:Reguar:size=8
+;; opensansbold = DroidSans:Bold:size=8
+opensansbold = Kiona:Regular:size=8
+opensansboldhigh = DroidSans:Bold:size=11
+opensansital = DroidSans:Italic:size=9
+xos = xos4\ Terminus:size=14;0
+nerd = TerminessTTF Nerd Font:size=12;0
+
+
+[colors]
+light-red = #D95B5B
+light-green = #249824
+light-purple = #A44BA0
+
+menucol-yellow = #F7F272
+menucol-blue = #1771F1
+menucol-orange = #FFAF60
+menucol-red = #F85C50
+menucol-green = #77BD8B
+menucol-sealine = #00CF91
+menucol-purple = #9A76B3
+menucol-pink = #FF77BF
+menucol-deepblue = #6560FF
+menucol-lightblue = #60FFF7
+
+fav-purple = #6633FF
+;;dark = #aa2b2e37
+;; First two letters control transparency as a Hex
+dark = #CC000000
+dark-red = #311
+dark-green = #131
+dark-purple = #201134
+light = #eee
+gray = #999
+dark-gray = #333
+
+
+[bar/main]
+monitor = HDMI-0
+enable-ipc = true
+override-redirect = false
+
+bottom = false
+width = 100%
+height = 22 ;px
+
+background = ${colors.dark}
+foreground = ${colors.light}
+
+line-color = ${colors.light-purple}
+line-size = 2
+
+separator = "   "
+
+;List of fonts
+font-0 = ${fonts.opensansreg}
+font-1 = ${fonts.opensanssemibold}
+font-2 = ${fonts.opensansbold}
+font-3 = ${fonts.opensansital}
+font-4 = ${fonts.xos}
+font-5 = ${fonts.nerd}
+font-6 = ${fonts.opensansboldhigh}
+
+wm-restack = i3
+;; tray-position = left
+
+modules-left = monleft workspaces i3new
+;; modules-center = cpu i3-windows memory
+modules-center = cpu xfloat xtile xshs xwindow xmin xfull xclose memory
+modules-right = spotify sound spotmpr spotmp spotmn wifi date
+
+
+;Date correction
+[module/date]
+type = internal/date
+
+time = %I:%M %p
+date = %a, %b %d
+date-alt = %A, %B %d, %Y
+time-alt = %H:%M:%S
+
+format-prefix = "   "
+format-padding = 2
+format-underline = ${colors.menucol-orange}
+format-foreground = ${colors.menucol-orange}
+interval = 20
+
+label = %date%, %time%
+label-font = 2
+label-foreground = ${colors.light}
+
+
+;Workspaces
+[module/workspaces]
+type = internal/i3
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+format = <label-state> <label-mode>
+
+label-dimmed-underline = ${colors.background}
+
+;On editing mode (resize for ex)
+label-mode = %mode%
+label-mode-background = ${colors.dark-purple}
+label-mode-underline = ${colors.fav-purple}
+label-mode-padding = 2
+label-mode-font = 3
+
+label-focused = %index%
+label-focused-background = ${colors.dark-green}
+label-focused-underline = ${colors.light-green}
+label-focused-padding = 3
+label-focused-font = 3
+
+label-unfocused = %index%
+label-unfocused-foreground = ${colors.gray}
+label-unfocused-padding = 3
+label-unfocused-font = 3
+
+label-visible = %index%
+label-visible-background = ${colors.dark-purple}
+label-visible-underline = ${colors.light-purple}
+label-visible-padding = 3
+label-visible-font = 3
+
+label-urgent = %index%
+label-urgent-background = ${colors.dark-red}
+label-urgent-underline = ${colors.light-red}
+label-urgent-padding = 3
+label-urgent-font = 3
+
+[module/xkillapp]
+type = custom/text
+content = ""
+content-font = 7
+content-padding = 0
+click-left = sleep 0.5 && xkill > /dev/null 2>&1 &
+
+[module/i3kill]
+type = custom/text
+content = ""
+content-font = 7
+content-padding = 0
+click-left = sleep 0.5 && xkill > /dev/null 2>&1 &
+
+;Network
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+format-connected =  <ramp-signal>
+format-connected-padding = 2
+format-connected-foreground = ${colors.menucol-green}
+format-connected-underline = ${colors.menucol-green}
+
+format-disconnected = " "
+format-disconnected-font = 7
+format-disconnected-padding = 2
+format-disconnected-foreground = ${colors.menucol-yellow}
+format-disconnected-underline = ${colors.menucol-yellow}
+
+ramp-signal-0 = " "
+ramp-signal-1 = "▂"
+ramp-signal-2 = "▄"
+ramp-signal-3 = "▅"
+ramp-signal-4 = "▇"
+ramp-signal-font = 7
+ramp-signal-foreground = ${colors.light}
+
+
+;Sound
+[module/sound]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 2
+format-volume-underline = ${colors.menucol-sealine}
+
+label-volume = %percentage%
+label-volume-font = 3
+
+label-muted =  (%percentage%)
+label-muted-font = 3
+label-muted-padding = 2
+label-muted-foreground = ${colors.gray}
+label-muted-underline = ${colors.gray}
+
+ramp-volume-0 = "  "
+ramp-volume-1 = "  "
+ramp-volume-2 = "  "
+ramp-volume-font = 7
+ramp-volume-foreground = ${colors.menucol-sealine}
+
+
+;Battery Indicator
+[module/battery]
+type = internal/battery
+battery = BAT1
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = 2
+format-charging-underline = ${colors.menucol-orange}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-padding = 2
+format-discharging-underline = ${colors.menucol-orange}
+
+label-charging = %percentage%
+label-charging-font = 3
+
+label-discharging = %percentage%
+label-discharging-font = 3
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+animation-charging-foreground = ${colors.menucol-orange}
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-5 = 
+animation-discharging-6 = 
+animation-discharging-7 = 
+animation-discharging-8 = 
+animation-discharging-9 = 
+animation-discharging-framerate = 750
+animation-discharging-foreground = ${colors.menucol-orange}
+
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label>
+format-padding = 2
+format-underline = ${colors.menucol-red}
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.menucol-red}
+
+label = " %percentage%"
+label-font = 3
+
+
+[module/memory]
+type = internal/memory
+interval = 3
+format = <label>
+format-padding = 2
+format-underline = ${colors.menucol-purple}
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.menucol-purple}
+
+label = " %gb_used%"
+label-font = 3
+
+
+[module/memoryswap]
+type = internal/memory
+interval = 3
+format = <label>
+format-padding = 2
+format-underline = ${colors.menucol-pink}
+
+format-prefix = 
+format-prefix-foreground = ${colors.menucol-pink}
+
+label = " %gb_swap_used%"
+label-font = 3
+
+
+; i3-windows, still really broken but I left it here in case I wanna patch it.
+[module/i3-windows]
+;; format-background = #95BBBC
+format = <label>
+type = custom/script
+exec = ~/.config/polybar/polybar-i3-windows/module.py
+tail = true
+format-padding = 0
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "阮  "
+format = <label>
+exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist} | {song}'
+format-underline = #1db954
+
+[module/spotmp]
+type =          custom/text
+content-font = 7
+content =       "懶"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+[module/spotmpr]
+type =          custom/text
+content-font = 7
+content =       "玲"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+[module/spotmn]
+type =          custom/text
+content-font = 7
+content =       "怜"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+[module/xmin]
+type =                      custom/text
+content-font =		    7
+content = 		    "  "
+click-left = timeout 5s ~/.prodscripts/polyscratch
+
+[module/xclose]
+type =                      custom/text
+content-font =              7
+content =                   " 窱"
+click-left = timeout 5s ~/.prodscripts/polykill
+
+[module/xfloat]
+type =                      custom/text
+content-font =		    7
+content = 		    "  "
+click-left = timeout 5s ~/.prodscripts/polyfloat
+
+[module/xtile]
+type =                      custom/text
+content-font =              7
+content =                   "  "
+click-left = timeout 5s ~/.prodscripts/polytile
+
+[module/xfull]
+type =                      custom/text
+content-font =              7
+content =                   " ﰊ "
+click-left = timeout 5s ~/.prodscripts/polyfull
+
+[module/xshs]
+type =                      custom/text
+content-font =              7
+content =                   " ﮴ "
+click-left = i3-msg scratchpad show
+
+[module/i3new]
+type =                      custom/text
+content-font =		    2
+content = 		    " "
+click-left = ~/.i3nw/i3nw
+
+[module/monleft]
+type =                      custom/text
+content-font =		    2
+content = 		    "  "
+click-left = i3-msg focus output left
+
+[module/xwindow]
+type = internal/xwindow
+format-padding = 4
+label = %title%
+label-maxlen = 15
+label-empty = "NAVI"

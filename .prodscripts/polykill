@@ -1,0 +1,8 @@
+#!/bin/bash
+# Thanks StackOverflow, im still learning how to use bashscript
+# This is a simple script that uses xprop to grab a windows PID and then kills it.
+# Intended To Be Used With My Polybar Buttons
+# This script has no "quit" or saftey in place because I am stupid
+# Because of this, I use it with the "timeout" utility that will kill the script if it
+# does not complete within a certain amount of time.
+until xprop _NET_WM_PID | cut -d' ' -f3 | ( read WINPID; kill $WINPID; ); do : ; done
