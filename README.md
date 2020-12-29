@@ -23,7 +23,8 @@ Everything else are bash scripts I wrote which also have some dependecies to wor
 `  xwininfo, xprop`
 
 I also use a rofi powermenu that I got from [here](https://github.com/adi1090x/rofi) <br/>
-I stole the neofetch in the first screenshot from [here](https://gist.github.com/Talljoe/929e205a08c1add22e7b325e35cac74d)
+I stole the neofetch in the first screenshot from [here](https://gist.github.com/Talljoe/929e205a08c1add22e7b325e35cac74d) <br/>
+My rofi uses [this icon theme](https://store.kde.org/p/1337328)
 
 # Using
 ### Start by cloning the repo
