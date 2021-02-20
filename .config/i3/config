@@ -1,118 +1,82 @@
-# Omni Wuz Here
-# Most of the configurations here is a fixed version of the regolith configs (mainly because I like regolith workflow)
-# Da mod keeeee
+#  _ _____                   
+# (_)___ /_      ___ __ ___  
+# | | |_ \ \ /\ / / '_ ` _ \ 
+# | |___) \ V  V /| | | | | |
+# |_|____/ \_/\_/ |_| |_| |_|
+# -----------------------------------------------------------------------------
+# Welcome to omni's nightmare i3 config, enjoy your stay!
+#
+# README: If you are using plain i3wm and no xfce, make sure to disable 
+# everything inside the SESSION SPECIAL section, and re-enable the commented
+# out i3-exit keybind. I also use a seperately compiled compositor, if you just 
+# run plain compton make sure to uncomment the exec compton line
+#
+# -----------------------------------------------------------------------------
+# // [ INDEX ] ////////////////////////////////////////////////////////////////
+# /////////////////////////////////////////////////////////////////////////////
+# // [GENERAL CONFIGURATION ] /////////////////////////////////////////////////
+# 	- Var Declaration
+# 	- Misc Globals
+# // [ KEYBOARD/MOUSE CONFIGURATION ] /////////////////////////////////////////
+#	- Navigation
+#	- Movement
+#	- Modification
+#	- Management ( Direct i3 management like reloading the conf )
+#	- Modes (Management / Modification)
+#	- Focus Mode
+#	- Misc
+#	- Mouse Bindings
+# // [ THEMING ] //////////////////////////////////////////////////////////////
+#	- Colours
+#	- Borders / Gaps
+#	- Misc
+#	- Bar (Disabled)
+# // [ AUTOSTART ] ////////////////////////////////////////////////////////////
+# 	- (Programs to launch when i3 is started)
+# // [ WINDOW RULES ] /////////////////////////////////////////////////////////
+# 	- (the for_window args, mainly used to float some windows)
+# // [ SESSION SPECIAL ] //////////////////////////////////////////////////////
+#	- (things for xfce4)
+# // [ PROGRAM SHORTCUTS ] ////////////////////////////////////////////////////
+# 	- Single
+# 	- Launchers
+# 	- Two-part (modes)
+#//////////////////////////////////////////////////////////////////////////////
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+#-----------------------------------------------------------------------------#
+##############################[ CONF START ]###################################
+#-----------------------------------------------------------------------------#
+
+
+
+# // [ GENERAL CONFIGURATION ] ////////////////////////////////////////////////
+
+# -- Declare Vars -- ----------------------------------------------------------
+# [Super Key As Mod]
 set $mod Mod4
-# Da alt key
+# [Set variable so L-Alt can also be used]
 set $alt Mod1
 
-# i3 dialogue font. Most notably used for the tabs
+# -- Misc Globals -------------------------------------------------------------
+# [Define font for dialogues]
 font pango:Kiona 9
 
-# -----------------------------------------------------------------------------------
+# [ Specify starting workspace for each monitor ]
+workspace 10 output HDMI-0
+workspace 1 output DP-2
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# [ Enable popup during fullscreen ]
+popup_during_fullscreen smart
 
-# Launch // Terminal // <Super> Enter ##
-bindsym $mod+Return exec kitty
-# Old Terminal Exec
-bindsym $mod+$alt+Return exec xfce4-terminal
-# Quick Launch Floating Kitty, Note that kitty handles changing its class, not i3.
-# Everything is on its own line because I was having issues with i3 not applying everything properly.
-for_window [class="FKIT"] floating enable
-for_window [class="FKIT"] resize set 55ppt 75ppt 
-for_window [class="FKIT"] move position center
-bindsym $mod+Shift+Return exec kitty --class FKIT
-
-# Launch nemo
-bindsym $mod+Shift+n exec nemo
-
-# Launch floating nemo, note that nemo handles setting its class, not i3
-# Same settings as kitty basically, ref above
-for_window [class="FNEMO"] floating enable
-for_window [class="FNEMO"] resize set 55ppt 75ppt
-for_window [class="FNEMO"] move position center
-bindsym $mod+$alt+n exec nemo --class FNEMO
-
-# Scratchpad kitty test
-for_window [class="SCKIT"] move to scratchpad
-bindsym $mod+backslash [class="SCKIT"] focus
-bindsym $mod+Shift+backslash [class="SCKIT"] move to scratchpad
-bindsym $mod+$alt+backslash [class="SCKIT"] kill
-bindsym $mod+Ctrl+backslash exec --no-startup-id kitty --class SCKIT; [class="SCKIT"] focus
-for_window [class="SCKIT"] title_format "SCRATCH | %title"
-
-
-# kill focused window
-# bindsym $mod+Shift+q kill
-# Leave commented, I have a better one later down the config
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-
-# Rofi execs
-## Launch // Application // <Super> Space ##
-bindsym $mod+space exec rofi -show drun -drun-match-feilds name -icon-theme "Simply-Gray-Circles" -show-icons 
-## Launch // Command // <Super><Shift> Space ##
-bindsym $mod+Shift+space exec rofi -show run 
-## Navigate // Window by Name // <Super><Ctrl> Space ##
-bindsym $mod+Ctrl+space exec rofi -show window
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-## Modify // Window Position // <Super><Shift> ↑ ↓ ← → ##
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-## Modify // Window Position // <Super><Shift> k j h l ##
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-## Modify // Containing Workspace // <Super><Ctrl><Shift> ↑ ↓ ← → ##
-bindsym $mod+Ctrl+Shift+Left move workspace to output left
-bindsym $mod+Ctrl+Shift+Down move workspace to output down
-bindsym $mod+Ctrl+Shift+Up move workspace to output up
-bindsym $mod+Ctrl+Shift+Right move workspace to output right
-
-## Modify // Next Window Orientation // <Super> Backspace ##
-bindsym $mod+BackSpace split toggle
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-## Modify // Window Floating Toggle // <Super><Shift> f ##
-bindsym $mod+Shift+f floating toggle
-## Modify // Move to Scratchpad // <Super><Ctrl> m ##
-bindsym $mod+Ctrl+m move to scratchpad
-## Navigate // Scratchpad // <Super><Ctrl> a ##
-bindsym $mod+Ctrl+a scratchpad show
-
-## Navigate // Tile/Float Focus Toggle // <Super><Shift> t ##
-bindsym $mod+Shift+t focus mode_toggle
-
-## Modify // Window Layout Mode // <Super> t ##
-bindsym $mod+t layout toggle tabbed splith splitv
-
-# switch to workspace
+# // [ KEYBOARD/MOUSE CONFIGURATION ] /////////////////////////////////////////
+#
+# -- Navigation -- ------------------------------------------------------------
+# 
+# -- Workspace Navigation -- --------------------------------------------------
+# [ Mod+# Nav ]
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -133,79 +97,192 @@ bindsym $mod+Ctrl+7 workspace 17
 bindsym $mod+Ctrl+8 workspace 18
 bindsym $mod+Ctrl+9 workspace 19
 
-# Workspace Navigation
-## Navigate // Next Workspace // <Super> Tab ##
+# [ Next Workspace ]
 bindsym $mod+Tab workspace next
-## Navigate // Next Workspace // <Super><Alt> → ##
 bindsym $mod+$alt+Right workspace next
-## Navigate // Previous Workspace // <Super><Shift> Tab ##
+# [ Prev Workspace ]
 bindsym $mod+Shift+Tab workspace prev
-## Navigate // Previous Workspace // <Super><Alt> ← ##
 bindsym $mod+$alt+Left workspace prev
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-bindsym $mod+Shift+Ctrl+1 move container to workspace 11
-bindsym $mod+Shift+Ctrl+2 move container to workspace 12
-bindsym $mod+Shift+Ctrl+3 move container to workspace 13
-bindsym $mod+Shift+Ctrl+4 move container to workspace 14
-bindsym $mod+Shift+Ctrl+5 move container to workspace 15
-bindsym $mod+Shift+Ctrl+6 move container to workspace 16
-bindsym $mod+Shift+Ctrl+7 move container to workspace 17
-bindsym $mod+Shift+Ctrl+8 move container to workspace 18
-bindsym $mod+Shift+Ctrl+9 move container to workspace 19
+# [ Add and switch to next workspace ]
+bindsym $mod+grave exec --no-startup-id bash /home/omni/.i3nw/i3nw
 
-# move focused container to workspace, move to workspace
-## Modify // Take Window to Workspace // <Super><Alt> 0..9 ##
-bindsym $mod+$alt+1 move container to workspace number 1; workspace number 1 
-bindsym $mod+$alt+2 move container to workspace number 2; workspace number 2
-bindsym $mod+$alt+3 move container to workspace number 3; workspace number 3
-bindsym $mod+$alt+4 move container to workspace number 4; workspace number 4
-bindsym $mod+$alt+5 move container to workspace number 5; workspace number 5
-bindsym $mod+$alt+6 move container to workspace number 6; workspace number 6
-bindsym $mod+$alt+7 move container to workspace number 7; workspace number 7
-bindsym $mod+$alt+8 move container to workspace number 8; workspace number 8
-bindsym $mod+$alt+9 move container to workspace number 9; workspace number 9
-bindsym $mod+$alt+0 move container to workspace number 10; workspace number 10
-## Modify // Take Window to Workspace // <Super><Alt><Ctrl> 0..9 ##
-bindsym $mod+$alt+Ctrl+1 move container to workspace number 11; workspace number 11 
-bindsym $mod+$alt+Ctrl+2 move container to workspace number 12; workspace number 12
-bindsym $mod+$alt+Ctrl+3 move container to workspace number 13; workspace number 13
-bindsym $mod+$alt+Ctrl+4 move container to workspace number 14; workspace number 14
-bindsym $mod+$alt+Ctrl+5 move container to workspace number 15; workspace number 15
-bindsym $mod+$alt+Ctrl+6 move container to workspace number 16; workspace number 16
-bindsym $mod+$alt+Ctrl+7 move container to workspace number 17; workspace number 17
-bindsym $mod+$alt+Ctrl+8 move container to workspace number 18; workspace number 18
-bindsym $mod+$alt+Ctrl+9 move container to workspace number 19; workspace number 19
+# [ Back and fourth ]
+bindsym $mod+a workspace back_and_forth
 
-## Session // Exit App // <Super><Shift> q ##
+# [ Auto back and fourth ]
+workspace_auto_back_and_forth yes
+
+# [ Switch between monitors ]
+bindsym $mod+bracketleft focus output left
+bindsym $mod+bracketright focus output right
+
+
+# -- Window Navigation --------------------------------------------------------
+# [ Vim Keybinds ]
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# [ Cursor Keys ]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# [Toggle between tiled and floating focus]
+bindsym $mod+Shift+b focus mode_toggle
+
+# [ Focus Parent, used to modify a container ]
+# [ ( For example you can use this to modify a tab group ) ]
+bindsym $mod+p focus parent
+# [ Focus Child ( Opposite ) ]
+bindsym $mod+Shift+p focus child
+
+# -- Movement -----------------------------------------------------------------
+# [Move within workspace]
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# [Move between workspaces]
+bindsym $mod+$alt+1 move container to workspace 1
+bindsym $mod+$alt+2 move container to workspace 2
+bindsym $mod+$alt+3 move container to workspace 3
+bindsym $mod+$alt+4 move container to workspace 4
+bindsym $mod+$alt+5 move container to workspace 5
+bindsym $mod+$alt+6 move container to workspace 6
+bindsym $mod+$alt+7 move container to workspace 7
+bindsym $mod+$alt+8 move container to workspace 8
+bindsym $mod+$alt+9 move container to workspace 9
+bindsym $mod+$alt+0 move container to workspace 10
+# [ Add ctrl to work with workspace 11-19 ]
+bindsym $mod+$alt+Ctrl+1 move container to workspace 11
+bindsym $mod+$alt+Ctrl+2 move container to workspace 12
+bindsym $mod+$alt+Ctrl+3 move container to workspace 13
+bindsym $mod+$alt+Ctrl+4 move container to workspace 14
+bindsym $mod+$alt+Ctrl+5 move container to workspace 15
+bindsym $mod+$alt+Ctrl+6 move container to workspace 16
+bindsym $mod+$alt+Ctrl+7 move container to workspace 17
+bindsym $mod+$alt+Ctrl+8 move container to workspace 18
+bindsym $mod+$alt+Ctrl+9 move container to workspace 19
+
+# [ Move to and focus workspace ]
+bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1 
+bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10; workspace number 10
+# [ Add ctrl to work with workspace 11-19 ]
+bindsym $mod+Shift+Ctrl+1 move container to workspace number 11; workspace number 11 
+bindsym $mod+Shift+Ctrl+2 move container to workspace number 12; workspace number 12
+bindsym $mod+Shift+Ctrl+3 move container to workspace number 13; workspace number 13
+bindsym $mod+Shift+Ctrl+4 move container to workspace number 14; workspace number 14
+bindsym $mod+Shift+Ctrl+5 move container to workspace number 15; workspace number 15
+bindsym $mod+Shift+Ctrl+6 move container to workspace number 16; workspace number 16
+bindsym $mod+Shift+Ctrl+7 move container to workspace number 17; workspace number 17
+bindsym $mod+Shift+Ctrl+8 move container to workspace number 18; workspace number 18
+bindsym $mod+Shift+Ctrl+9 move container to workspace number 19; workspace number 19
+
+# [ Move container to next/prev workspace ]
+bindsym $mod+Ctrl+Tab move container to workspace next; workspace next
+bindsym $mod+Ctrl+Shift+Tab move container to workspace prev; workspace prev
+
+# [Move workspace between outputs (monitors)]
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Down move workspace to output down
+bindsym $mod+Ctrl+Shift+Up move workspace to output up
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
+# [Scratchpad]
+# Scratchpad is a hidden workspace that you can quickly focus windows from
+# Works kinda like iconifying, but a different designed goal
+bindsym $mod+Ctrl+m move to scratchpad
+bindsym $mod+Ctrl+a scratchpad show
+
+# [ Move window to next workspace ]
+bindsym $mod+$alt+grave exec --no-startup-id bash /home/omni/.i3nw/naws
+# [ Move window to next workspace and focus it ]
+bindsym $mod+Shift+grave exec --no-startup-id bash /home/omni/.i3nw/naws -m
+# [ Move window to previous workspace]
+bindsym $mod+Shift+a move container to workspace back_and_forth; workspace back_and_forth
+
+# -- Modification -- ----------------------------------------------------------
+# [ Next orient/split ]
+bindsym $mod+BackSpace split toggle
+
+# [ Layout Toggle ]
+bindsym $mod+t layout toggle tabbed splith splitv
+
+# [ Containerize window and switch to tabbed layout. ] 
+bindsym $mod+Shift+t split toggle; layout tabbed
+
+# [ Quick Resize ]
+bindsym $mod+Ctrl+Left resize shrink width 10 px or 2 ppt
+bindsym $mod+Ctrl+Down resize grow height 10 px or 2 ppt
+bindsym $mod+Ctrl+Up resize shrink height 10 px or 2 ppt
+bindsym $mod+Ctrl+Right resize grow width 10px or 2ppt 
+bindsym $mod+Ctrl+h resize shrink width 10 px or 2 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 2 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 2 ppt
+bindsym $mod+Ctrl+l resize grow width 10px or 2ppt 
+
+# [ Resize to 50/50 split ]
+bindsym $mod+Shift+s resize set 50ppt
+bindsym $mod+$alt+s resize set height 50ppt
+
+# [ Fullscreen a window ]
+bindsym $mod+f fullscreen toggle
+
+# [ Float a window ]
+bindsym $mod+Shift+f floating toggle
+
+# [ Center floating window ]
+bindsym $mod+c move position center
+
+# [ Quick Resize for floating windows, since many float way too big ]
+bindsym $mod+y floating enable; resize set 55ppt 75ppt; move position center 
+bindsym $mod+Shift+y floating enable; resize set 75ppt 95ppt; move position center 
+
+# [ Border toggle ]
+# 	> toggles between 2px border, titlebar and no border
+bindsym $mod+u border toggle 
+
+# [ Sticky a window ]
+bindsym $mod+s sticky toggle
+
+# [ Close Program ]
 bindsym $mod+Shift+q [con_id="__focused__"] kill
-## Session // Kill App // <Super><Alt> q ##
+# [ Sigkill Program ]
 bindsym $mod+$alt+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
 
-# reload the configuration file
+# -- Management ---------------------------------------------------------------
+
+# [ Reload config ]
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+
+# [ Restart i3 in place ]
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-#-old-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec xfce4-session-logout
 
-# resize window (you can also use the mouse for that)
-## Resize // Enter Resize Mode // <Super> r ##
+# [ Exit i3 (OLD // DISABLED // REF SESSION SPECIAL ) ]
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#
+# -- Modes (Management / Modification) ----------------------------------------
+#
+# [Resize Mode]
 mode "Resize Mode" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        ## Resize // Resize Window // ↑ ↓ ← → ##
         bindsym Left resize shrink width 6 px or 6 ppt
         bindsym Down resize grow height 6 px or 6 ppt
         bindsym Up resize shrink height 6 px or 6 ppt
@@ -216,7 +293,6 @@ mode "Resize Mode" {
         bindsym Shift+Up resize shrink height 12 px or 12 ppt
         bindsym Shift+Right resize grow width 12 px or 12 ppt
 
-        ## Resize // Resize Window // k j h l ##
         bindsym h resize shrink width 6 px or 6 ppt
         bindsym k resize grow height 6 px or 6 ppt
         bindsym j resize shrink height 6 px or 6 ppt
@@ -227,89 +303,158 @@ mode "Resize Mode" {
         bindsym Shift+j resize shrink height 12 px or 12 ppt
         bindsym Shift+l resize grow width 12 px or 12 ppt
 
-        ## Resize // Window Gaps // + - ##
+	# [ Window Gap Resize ]
         bindsym minus gaps inner current minus 6
         bindsym plus gaps inner current plus 6
         bindsym Shift+minus gaps inner current minus 12
         bindsym Shift+plus gaps inner current plus 12
 
-        ## Resize // Exit Resize Mode // Escape or Enter ## 
-        bindsym Return exec notify-send "Default Mode"; mode "default"
-        bindsym Escape exec notify-send "Default Mode"; mode "default"
-        bindsym $mod+r exec notify-send "Default Mode"; mode "default"
+	# [ Preset Resizes ]
+	bindsym 1 resize set width 10ppt
+	bindsym 2 resize set width 20ppt
+	bindsym 3 resize set width 30ppt
+	bindsym 4 resize set width 40ppt
+	bindsym 5 resize set width 50ppt
+	bindsym 6 resize set width 60ppt
+	bindsym 7 resize set width 70ppt
+	bindsym 8 resize set width 80ppt
+	bindsym 9 resize set width 90ppt
+	
+	# [ Vertical Preset Resizes ]
+	bindsym Shift+1 resize set height 10ppt
+	bindsym Shift+2 resize set height 20ppt
+	bindsym Shift+3 resize set height 30ppt
+	bindsym Shift+4 resize set height 40ppt
+	bindsym Shift+5 resize set height 50ppt
+	bindsym Shift+6 resize set height 60ppt
+	bindsym Shift+7 resize set height 70ppt
+	bindsym Shift+8 resize set height 80ppt
+	bindsym Shift+9 resize set height 90ppt
+	
+
+        ## [ Escape Bindings ] 
+        bindsym Return exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Default Mode"; mode "default"
+        bindsym Escape exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Default Mode"; mode "default"
+        bindsym $mod+r exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Default Mode"; mode "default"
 }
 
-bindsym $mod+r exec notify-send "Resize Mode"; mode "Resize Mode"
+bindsym $mod+r exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Resize Mode"; mode "Resize Mode"
 
-# Quick Resize
-bindsym $mod+Ctrl+Left resize shrink width 2 px or 2 ppt
-bindsym $mod+Ctrl+Down resize grow height 2 px or 2 ppt
-bindsym $mod+Ctrl+Up resize shrink height 2 px or 2 ppt
-bindsym $mod+Ctrl+Right resize grow width 2px or 2ppt 
-# Same thing with vim keybinds
-bindsym $mod+Ctrl+h resize shrink width 2 px or 2 ppt
-bindsym $mod+Ctrl+j resize grow height 2 px or 2 ppt
-bindsym $mod+Ctrl+k resize shrink height 2 px or 2 ppt
-bindsym $mod+Ctrl+l resize grow width 2px or 2ppt 
-
-# Remove Titlebars
-for_window [class="^.*"] border pixel 1
-# for_window [tiling] border pixel 1
-# for_window [floating] border none
-hide_edge_borders both
-# Disable titlebar
-set_from_resource $i3-wm.window.border.size i3-wm.window.border.size 1
-set_from_resource $i3-wm.floatingwindow.border.size i3-wm.floatingwindow.border.size 1
-default_border pixel $i3-wm.window.border.size
-# default_floating_border pixel $i3-wm.floatingwindow.border.size
-default_floating_border none
-# Center text for titlebars (mainly seen for tabs)
-title_align center
-
-# Toggle between bordered, titlebar and no border.
-bindsym $mod+u border toggle 
-
-# More direct border control through the use of modes:
+# [ Border set ]
 mode "Border Set" {
 	# Hide Border
 	bindsym n border none; mode "default"
 	# Titlebar
 	bindsym t border normal 1; mode "default"
+	# 2 Pixel Border (idk why you would need this)
+	bindsym 2 border pixel 2; mode "default"
 	# Normal border (default)
 	bindsym b border pixel 1; mode "default"
 	# Exit with no changes
 	bindsym Escape mode "default"
 } 
-bindsym $mod+b exec notify-send "Border Set"; mode "Border Set"
+bindsym $mod+b exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Border Set"; mode "Border Set" 
 
+# -- [ Focus Mode ] -----------------------------------------------------------
+# 	> Focus mode is a mode used in a two part keybind to focus commonly
+# 	> open/used programs
+# 	> Chose mod+w because of one-hand conveinence and it's prox to mod+a 
+# 	> (switching focus back to previous item)
+# 	> An example of why this is helpful is quickly checking discord than switching back to whatever.
+#
+#
+mode "Quick Focus" {
+	# Thanks StackOverflow, I fucking hate Regex
+	bindsym c [class="Firefox" title="(.*Calendar.*)"] focus; mode "default" 
+	bindsym d [class="discord"] focus; mode "default"
+	bindsym s [class="Spotify"] focus; mode "default"
+	bindsym t [class="Thunderbird"] focus; mode "default"
+	bindsym v [title="VIM"] focus; mode "default"
+	# Non-browser-specific way of switching to YouTube (note that it must be the focused tab on the browser)
+	bindsym y [title="YouTube*"] focus; mode "default"
+	# Exit
+	bindsym Escape exec notify-send "nevermind..."; mode "default"
+	bindsym w exec notify-send "nevermind..."; mode "default"
+	bindsym $mod+w exec notify-send "nevermind..."; mode "default"
+}
+bindsym $mod+w exec notify-send -i ~/.userassets/i3log.png "Quick Focus" "Focus an application"; mode "Quick Focus"
 
-# Configure Gaps
-gaps inner 5
-gaps outer 0
-# Smart gaps removes outter gaps if only one app is open on a workspace
-smart_gaps on
+# -- [ Misc ] -----------------------------------------------------------------
+# uhhhh
+#
+# -- [ Mouse Bindings ] -------------------------------------------------------
+#
 
-# Colorscheme || Note that the colors are completely offset (usually by 90 hue degrees or so), so it takes trial and error to get the color you want
-# Reference : https://www.reddit.com/r/i3wm/comments/je7c9i/transparent_window_titles_just_found_out_about/
-# NOTE: The way of getting colors is outdated on the post, its just a hex code then the opacity at the end.
-# Eg: #FFFFFF50 < White, 50% opacity
+# [ Window focus follows mouse ]
+focus_follows_mouse yes
+
+# [ Drag/Resize windows with mod + left/right click ]
+floating_modifier $mod
+
+# [ Switch workspaces with mod+mousewheel ]
+bindsym $mod+button4 --whole-window workspace prev
+bindsym $mod+button5 --whole-window workspace next
+# [ Or, if the mouse has them... use the two side buttons ]
+bindsym button8 --whole-window workspace prev
+bindsym button9 --whole-window workspace next
+# [ Close Window On Mod+MiddleClick ]
+bindsym --whole-window $mod+button2 kill
+# [ Float window on mod+scrollup ]
+# 	> Weird and stupid binding, but ive found it nice in one hand on
+# 	> keyboard, one hand on mouse situations
+bindsym --whole-window $mod+Shift+button4 floating toggle
+# [ Close Window On Middle Tab Click ] 
+# (The Tabs Count As Titlebars, Ref i3 User Guide 4.4)
+# 	> Similar to closing tabs on most web browsers
+bindsym --release button2 kill
+
+#//////////////////////////////////////////////////////////////////////////////
+# // [ THEMING ] //////////////////////////////////////////////////////////////
+#
+# -- [ Colours ] --------------------------------------------------------------
+# 	> For changing the opacity of UI elements, 
+# 	> append an opacity value in % at the
+# 	> end of the hex. Ex: 11aeb066 would be 66% opacity
+# 	> I reccomend keeping unfocused and focused_inactive with the same 
+# 	> borders, otherwise you may notice different colours inside splits.
+# 	> Although keep them seperate in text and background in order to 
+# 	> differ between tabs
+#
 # class                 border    bground   text    indicator child_border
 client.focused          #11aeb066 #11aeb066 #FFFFFF #268BD2   #95BBBC
-# Make The Focused_inactice and unfocused have the same colors except for text, otherwise shit gets fucky
-client.focused_inactive #06060a66 #06060a66 #FFFFFF #484E50   #222222
-client.unfocused        #0c0d0f56 #0c0d0f56 #909090 #484E50   #222222
+client.focused_inactive #13313266 #13313266 #FFFFFF #484E50   #222222
+client.unfocused        #040c1486 #040c1486 #909090 #484E50   #222222
 client.urgent           #2F343A #CC991E32 #FFFFFF #900000   #900000
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
-# TEST -- Old client focused border : #95BBBC
 
-# Enable popup during fullscreen
-popup_during_fullscreen smart
+# -- [ Borders / Gaps ] -------------------------------------------------------
+#
+# [ No border at all ]
+for_window [class="^.*"] border pixel 0
+# [ One pixel border (old, looks bad with curved corner compositor) ]
+# for_window [tiling] border pixel 1
 
-# Window focus follows mouse
-focus_follows_mouse yes
+# [ Hide borders when only one window is present ]
+hide_edge_borders both
 
-# The bar configuration // I have it hidden by default but this allows the workspaces to communicate with xfce4-panel
+# [ Don't have border for pop-ups ]
+default_floating_border none
+
+# [ Center text for titlebars (mainly seen on tabs) ]
+title_align center
+
+# [ Gaps ]
+gaps inner 5
+gaps outer 0
+# [ Hide gaps if only one window is present ]
+smart_gaps on
+
+# -- [ Misc ] -----------------------------------------------------------------
+# pp poo poo 
+#
+# -- [ Bar ] ------------------------------------------------------------------
+# 	> Note: I don't use the bar anymore, but I keep it just in case
 bar {
   mode invisible
   position bottom
@@ -332,7 +477,27 @@ bar {
     }
  }
 
-# Float certain windows
+# /////////////////////////////////////////////////////////////////////////////
+# // [ AUTOSTART ] ////////////////////////////////////////////////////////////
+
+# [ Wallpaper manager ]
+exec --no-startup-id nitrogen --restore
+# [ Start synergy ]
+exec --no-startup-id synergy
+# [ Compositor ]
+# exec compton 
+exec ~/git-shit/picom/build/src/picom
+# [ Unclutter ]
+exec --no-startup-id unclutter
+# [ Polybar ]
+exec polybar main
+# [ On-desktop clock ]
+exec conky
+
+# /////////////////////////////////////////////////////////////////////////////
+# // [ WINDOW RULES ] /////////////////////////////////////////////////////////
+#
+# [ Float certain windows ]
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="xfce4-appfinder"] floating enable
@@ -342,70 +507,91 @@ for_window [class="Tomboy"] floating enable
 for_window [class="Zim"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
+for_window [title="Panel Preferences"] floating enable
+for_window [class="(?i)Gedit"] floating enable
+for_window [class="(?i)gnome-system-monitor"] floating enable
+for_window [window_role="Msgcompose" class="(?i)Thunderbird"] floating enable
+# Remove later, this is to float the Discussion Dialogue Boxes 
+# since a tiled window is super broken
+for_window [title="View Post*"] floating enable
 
-# Titlebars on certain floaters for ez dragging or something
+# [ Titlebars on mpv and feh for a pop-up, mouse-managable window ]
 for_window [class="mpv"] border normal 0; focus;
 for_window [class="feh"] border normal 0; focus;
 
+# /////////////////////////////////////////////////////////////////////////////
+# // [ SESSION SPECIAL ] //////////////////////////////////////////////////////
+# 	> For plain i3, remove these. All of these shortcuts are for
+# 	> compatability with xfce4, which I use as a DE along i3wm
 
-# Execs
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id synergy
-exec compton
-exec --no-startup-id unclutter
-exec polybar main
-exec conky
-# xfce notification daemon
+# [ xfce notification daemon ]
 exec /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd 
-# Kill xfce settings daemon (the thing that rapes workspaces)
+# [ Kill xfce settings daemon (Interferes with i3, breaks workspaces) ]
 exec killall xfsettingsd
+# [ Use xfce logout instead of i3 logout ]
+bindsym $mod+Shift+e exec xfce4-session-logout
 
-# Additional Keybinds (Too Lazy To Organize)
-# Screenshot util
+# /////////////////////////////////////////////////////////////////////////////
+# // [ PROGRAM SHORTCUTS ] ////////////////////////////////////////////////////
+#
+# -- [ Single ] ---------------------------------------------------------------
+
+# 	> Note that for the floating launchers, the program controls setting
+# 	> its own class, this will not work for some applications
+
+# [ Terminal ]
+bindsym $mod+Return exec kitty
+# [ Floating Terminal ( for_window args are here for easy reference ) ]
+for_window [class="FKIT"] floating enable
+for_window [class="FKIT"] resize set 55ppt 75ppt 
+for_window [class="FKIT"] move position center
+bindsym $mod+Shift+Return exec kitty --class FKIT
+
+# [ Fallback terminal ]
+bindsym $mod+$alt+Return exec xfce4-terminal
+
+# [ File manager ]
+bindsym $mod+Shift+n exec nemo
+# [ Floating file manager ( for_window args are here for easy reference ) ]
+for_window [class="FNEMO"] floating enable
+for_window [class="FNEMO"] resize set 55ppt 75ppt
+for_window [class="FNEMO"] move position center
+bindsym $mod+$alt+n exec nemo --class FNEMO
+
+# [ Screenshot tool]
 bindsym $mod+F11 exec flameshot gui
-# Switch workspaces with mod+mousewheel
-bindsym $mod+button4 --whole-window workspace prev
-bindsym $mod+button5 --whole-window workspace next
-# Close Window On Mod+MiddleClick
-bindsym --whole-window $mod+button2 kill
-# Float window on mod+scrollup // this is fucking stupid but might be handy when I wanna be a floatfag
-bindsym --whole-window $mod+Shift+button4 floating toggle
-# Close Window On Middle Tab Click (The Tabs Count As Titlebars, Ref i3 User Guide 4.4) // Trying to replicate using xfce-panel here.
-bindsym --release button2 kill
-# Rofi Power Menu
+
+# [ Rofi Powermenu ]
 bindsym $mod+F2 exec ~/.config/rofi/powermenu/powermenu.sh
 
-# Add and switch to next workspace
-bindsym $mod+grave exec --no-startup-id bash /home/omni/.i3nw/i3nw
-# Switch to last active workspace (back and forth mode)
-bindsym $mod+a workspace back_and_forth
-# Switch between monitors
-bindsym $mod+bracketleft focus output left
-bindsym $mod+bracketright focus output right
+# [ Screenlocker ]
+bindsym $mod+End exec --no-startup-id betterlockscreen --lock
 
-# Center floating window
-bindsym $mod+c move position center
-# Quick Resize for floating windows, since many float way too big
-bindsym $mod+y floating enable; resize set 55ppt 75ppt; move position center 
-bindsym $mod+Shift+y resize set 55ppt 75ppt
+# [ Launch windowswitcher script ]
+bindsym $mod+Shift+w exec winswitch
 
-# Focus Parent, Mainly used to "select all tabs" in a tabbed layout
-# This allows you to move or even float an entire tab group 
-# Also can target multiple windows in a specific split and modify all of them
-bindsym $mod+p focus parent
+# [ Launch rofi menu for renaming windows ]
+bindsym $mod+n exec ~/.prodscripts/roficus
 
-# Make a floating window sticky (follow workspace) // Good for things like pop-out videos
-bindsym $mod+s sticky toggle
+# -- [ Launchers ] ------------------------------------------------------------
+# 	> I have keybinds for both dmenu and rofi
 
-# Last Minute Fixes (Not gonna organize either)
-# Specify starting workspace for each monitor
-workspace 10 output HDMI-0
-workspace 1 output DP-2
-# Add titelbar to upload dialogue
-# for_window [window_role="(?i)GtkFileChooserDialog"] border normal 0
-# Turns out I fucking hate the way that looks, but might be helpful for other titlebarless floaters
+# [ dmenu ]
+bindsym $mod+d exec dmenu_run -b -fn Kiona-12 -l 6 -nb '#080a0c' -sf '#080a0c' -sb '#95bbbc' -nf '#95bbbc'
 
-# Quick Launcher
+# [ Rofi ]
+# [ Desktop Launcher ]
+bindsym $mod+space exec rofi -show drun -drun-match-feilds name -icon-theme "Simply-Gray-Circles" -show-icons 
+## [ Command Launcher ]
+bindsym $mod+Shift+space exec rofi -show run 
+## [ Manage windows (Like an alt tab menu but not shit) ]
+bindsym $mod+Ctrl+space exec rofi -show window
+
+# -- [ Two-part (modes) ] -----------------------------------------------------
+# 	> I use modes to allow me to launch multiple different programs from
+# 	> one keybind set.
+
+#  [ Quick Launcher ]
 mode "Quick Launch" {
 	bindsym b exec baobab; mode "default"
 	bindsym d exec discord; mode "default"
@@ -417,43 +603,31 @@ mode "Quick Launch" {
 	bindsym r exec repoly; mode "default"
 	bindsym t exec thunderbird; mode "default"
 	bindsym s exec spotify; mode "default"
+	bindsym Shift+s exec steam; mode "default"
 	bindsym v exec vivaldi; mode "default"
 	bindsym Shift+v exec kitty vim; mode "default"
+	bindsym z exec zathura; mode "default"
 	# Exit
 	bindsym Escape mode "default"
 }
-# Chose mod+o for "open"
-bindsym $mod+o exec notify-send "Quick Launch"; mode "Quick Launch"
-mode "Multi Command" {
-        bindsym Ctrl+a scratchpad show
-	bindsym f floating toggle
-	bindsym k [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
-	bindsym Ctrl+m move to scratchpad 
-	bindsym q [con_id="__focused__"] kill
-	# Exit, Ik theres a shitload of methods but fuck off
-	bindsym Escape exec notify-send "Default Mode"; mode "default"
-	bindsym m exec notify-send "Default Mode"; mode "default"
-	bindsym $mod+m exec notify-send "Default Mode"; mode "default"
+# 	> Chose mod+o for "open"
+bindsym $mod+o exec notify-send -i ~/.userassets/i3log.png "Quick Launch" "Launch an application"; mode "Quick Launch"
+# 	> Alternate keybind for one-hand... e for "exec"
+bindsym $mod+e exec notify-send -i ~/.userassets/i3log.png "Quick Launch" "Launch an application"; mode "Quick Launch"
+# [ "Bookmark" Launcher ]
+# Same as Quick Launch but for commonly used webapps/pages.
+mode "Book Launch" {
+	bindsym c \
+		exec firefox --new-window https://calendar.google.com/calendar; \
+		exec notify-send -i ~/.userassets/i3log.png "Bookmark Launch" "Opening calendar..."; mode "default"
+	bindsym l \
+		exec vivaldi "https://www.youtube.com/watch?v=5qap5aO4i9A" --new-window; \
+		exec notify-send -i ~/.userassets/i3log.png "Bookmark Launch" "Opening lofi radio..."; mode "default"
+# // GIT REPO NOTE // Many Bookmarks were removed due to linking to things relating to my college.
+	bindsym Escape mode "default"
 }
-# Chose m for "multi"
-bindsym $mod+m exec notify-send "Multi Command"; mode "Multi Command"
-# Mode to change focus between commonly used windows 
-mode "Quick Focus" {
-	# Thanks StackOverflow, I fucking hate Regex
-	bindsym c [class="Firefox" title="(.*Calendar.*)"] focus; mode "default" 
-	bindsym d [class="discord"] focus; mode "default"
-	bindsym s [class="Spotify"] focus; mode "default"
-	bindsym t [class="Thunderbird"] focus; mode "default"
-	bindsym v [title="VIM"] focus; mode "default"
-	# Non-browser-specific way of switching to YouTube (note that it must be the focused tab on the browser)
-	bindsym y [title="YouTube*"] focus; mode "default"
-	# Exit
-	bindsym Escape exec notify-send "Default Mode"; mode "default"
-	bindsym w exec notify-send "Default Mode"; mode "default"
-	bindsym $mod+w exec notify-send "Default Mode"; mode "default"
-}
-# Chose w because of one-hand conveinence and it's prox to mod+a (switching focus back to previous item)
-# An example of why this is helpful is quickly checking discord than switching back to whatever.
-# Especially helpful considering the fact that you DONT FUCKING ORGANIZE YOUR WORKSPACES
-bindsym $mod+w exec notify-send "Quick Focus"; mode "Quick Focus"
+bindsym $mod+Shift+o exec notify-send -i ~/.userassets/i3log.png "Bookmark Launch" "Open a bookmark"; mode "Book Launch"
 
+# /////////////////////////////////////////////////////////////////////////////
+# /////////////////////////////////////////////////////////////////////////////
+# [ CONF END ] ////////////////////////////////////////////////////////////////
