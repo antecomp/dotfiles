@@ -105,7 +105,7 @@ bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+$alt+Left workspace prev
 
 # [ Add and switch to next workspace ]
-bindsym $mod+grave exec --no-startup-id bash /home/omni/.i3nw/i3nw
+bindsym $mod+grave exec --no-startup-id bash ~/.i3nw/i3nw
 
 # [ Back and fourth ]
 bindsym $mod+a workspace back_and_forth
@@ -213,9 +213,9 @@ bindsym $mod+Ctrl+m move to scratchpad
 bindsym $mod+Ctrl+a scratchpad show
 
 # [ Move window to next workspace ]
-bindsym $mod+$alt+grave exec --no-startup-id bash /home/omni/.i3nw/naws
+bindsym $mod+$alt+grave exec --no-startup-id bash ~/.i3nw/naws
 # [ Move window to next workspace and focus it ]
-bindsym $mod+Shift+grave exec --no-startup-id bash /home/omni/.i3nw/naws -m
+bindsym $mod+Shift+grave exec --no-startup-id bash ~/.i3nw/naws -m
 # [ Move window to previous workspace]
 bindsym $mod+Shift+a move container to workspace back_and_forth; workspace back_and_forth
 
