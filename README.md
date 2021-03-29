@@ -7,20 +7,16 @@
 I use i3wm on top of xfce4, there's plenty of tutorials on how to do this online, but they're old so you may need to do some tweaking.
 - Terminal   | [Kitty](https://sw.kovidgoyal.net/kitty/)
 - Bar        | [Polybar](https://github.com/polybar/polybar)
-- Compositor | [Tryone Compton](https://github.com/tryone144/compton)
+- Compositor | [Jonaburg Picom](https://github.com/jonaburg/picom)
 - Launcher   | [Rofi](https://github.com/davatorium/rofi)
 <br/>
 
 ## Screenshots
 ![Terminals and Feh](./term-feh-preview.png)
 ![Rofi](./rofi-preview.png)
-![Powermenu](./powermenu-preview.png)
-
 
 ### My polybar uses some scripts.
 Spotify Currently Playing | [Polybar Spotify](https://github.com/Jvanrhijn/polybar-spotify), dependencies are python2 or 3, and the python dbus module
-Everything else are bash scripts I wrote which also have some dependecies to work: <br/> 
-`  xwininfo, xprop`
 
 I also use a rofi powermenu that I got from [here](https://github.com/adi1090x/rofi) <br/>
 I stole the neofetch in the first screenshot from [here](https://gist.github.com/Talljoe/929e205a08c1add22e7b325e35cac74d) <br/>
