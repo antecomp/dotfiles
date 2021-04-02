@@ -15,7 +15,6 @@
 ;; ============================================================================
 ;; 	- Var Dec
 ;;	- Basic Bar Config / Var Application
-;;	- Module Application
 ;;	- Modules
 ;; ============================================================================
 ;;
@@ -23,25 +22,41 @@
 ;;
 ;; // CONF BEGIN //============================================================
 
-;; Var Dec --------------------------------------------------------------------
+;;=============================================================================
+;; Var Dec ====================================================================
+;;=============================================================================
+
+;; Per-device configuration
+[init]
+monitor = HDMI-0
+ipc = true
+override = false
+wm = i3
+battery = BAT1
+adapter = ADP1
+
+
+
+;; [ Font Notes ]
+;; 		When you change the bar size, you may need to adjust the nerd font size
+;; 		Use a monospace nerd font to prevent cutoffs and other weird stuff.
+;; 		When using %{TX} to use inline font changes, remeber it is 1-indexed.
+;; 		Example: use %{T8} to access font #7. 
 
 [fonts]
-opensansreg = Kiona:Regular:size=9;2
-opensanssemibold = Kiona:Reguar:size=9;2
-opensansbold = Kiona:Regular:size=9;2
-opensansboldhigh = DroidSans:Bold:size=11
-opensansital = DroidSans:Italic:size=9
-xos = xos4\ Terminus:size=14;0
-;; NERD FONT SIZE MUST MATCH BAR HEIGHT FOR DIVIDERS TO LOOK PROPER
-;; MUST ALSO BE A MONOSPACE NERD FONT 
-nerd = NotoSansMono Nerd Font:style=Medium:size=14;4
-nerd2 = TerminessTTF Nerd Font:size=5;5
+;; Font 0 -- Main text font
+main = Kiona:Regular:size=9;2
+;; Font 1 -- Larger nerd font, used for dividers
+nerd = NotoSansMono Nerd Font:style=Medium:size=14;3
+;; Font 2 -- Smaller font used for icons/symbols
+icon = NotoSansMono Nerd Font:style=Medium:size=11;2
+
+
 
 [colours]
-
 ;; // First two letters control transparency as a Hex //
 
-mainbg = #a903090e
+mainbg = #bf03090e
 altbg = #081b27
 mainc = #FFFFFF
 altc = #FFFFFFF
@@ -63,94 +78,137 @@ pink = #FF77BF
 deepblue = #6560FF
 lightblue = #60FFF7
 
-;; Basic Bar Config -----------------------------------------------------------
+;; =============================================================================
+;; Bar Config =================================================================
+;; =============================================================================
 
 [bar/main]
-monitor = HDMI-0
-enable-ipc = true
-override-redirect = false
 
+;; Modules -------------------------------------------------------------------- 
+;;					 (switch comments for right to switch from spotify to cmus)
+
+modules-left = appmenu rsep i3 i3new
+modules-center = time
+;; modules-right = lsep cmus pulse lsep cpu memory battery lsep
+modules-right = lsep spotify pulse lsep cpu memory battery lsep
+
+;; Other stuff ----------------------------------------------------------------
+
+;; Size/positioning
 bottom = false
 width = 100%
 height = 22 ;px
 
-background = ${colours.mainbg}
-foreground = ${colours.mainc}
 
+;; Changing these is not reccomended, seperators may get screwy
 module-margin-left = 0
 module-margin-right = 0
 padding-left = 0
 padding-right = 0
 
 
-line-color = ${colours.green}
-line-size = 2
+;; Tray
+;; tray-position = right 
+ tray-padding = 2 
 
+
+;; Misc
+line-size = 1
 separator =
 
+;; APPLY VARIABLES, AVOID TOUCHING UNLESS NEEDED ------------------------------
+
 ;; List of fonts
-font-0 = ${fonts.opensansreg}
-font-1 = ${fonts.opensanssemibold}
-font-2 = ${fonts.opensansbold}
-font-3 = ${fonts.opensansital}
-font-4 = ${fonts.xos}
-font-5 = ${fonts.nerd}
-font-6 = ${fonts.opensansboldhigh}
-font-7 = ${fonts.nerd2}
+font-0 = ${fonts.main}
+font-1 = ${fonts.nerd}
+font-2 = ${fonts.icon}
 
-wm-restack = i3
+monitor = ${init.monitor}
+enable-ipc = ${init.ipc}
+override-redirect = ${init.override}
+wm-restack = ${init.wm}
 
-;; modules-left = logo logosep lsep2 i3
-modules-left = i3 i3new
-modules-center = time
-;; modules-right = cmus midsep date
-modules-right = spotify midsep cpu memory midsep date
+background = ${colours.mainbg}
+tray-background = ${colours.mainbg}
+foreground = ${colours.mainc}
+line-color = ${colours.green}
 
-;; Modules --------------------------------------------------------------------
+;; ============================================================================
+;; Modules ====================================================================
+;; ============================================================================
 
 ;; Seperators -----------------------------------------------------------------
 
-[module/empsep]
-type = custom/text
-content = "     "
-;;content = "%{T5}E"
-content-font = 5
-content-foreground = ${colours.altbg}
-content-background = ${colours.mainbg}
-
 [module/lsep]
 type = custom/text
-content = "%{T5}"
-;;content = "%{T5}E"
-content-font = 5
-content-foreground = ${colours.altbg}
-content-background = ${colours.empbg}
+content = " "
+content-foreground = ${colours.mainc}
+content-background = ${colours.mainbg}
 
 [module/rsep]
 type = custom/text
-content = "%{T5}       "
-;;content = "%{T5}E"
-content-font = 5
-content-foreground = ${colours.altbg}
-content-background = ${colours.mainbg}
-
-[module/lsep2]
-type = custom/text
-content = "%{T5} "
-;;content = "%{T5}E"
-content-font = 5
-content-foreground = ${colours.empbg}
-content-background = ${colours.mainbg}
-
-[module/midsep]
-type = custom/text
-content = "%{T5}  | "
-content-font = 5
-content-foreground = ${colours.empbg}
+content = "  "
+;; content-underline = #fff
+content-foreground = ${colours.mainc}
 content-background = ${colours.mainbg}
 
 
-;; Left Side ------------------------------------------------------------------
+;; Main Modules --------------------------------------------------------------
+
+[module/appmenu]
+type = custom/menu
+
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = true
+
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Commands will be executed using "/bin/sh -c $COMMAND"
+
+; I hate the shit I need to put after execs, but they are needed
+; REFERENCE: https://polybar.github.io/2020/12/02/Release-3.5.0.html
+
+menu-0-0 = Browsers
+menu-0-0-exec = menu-open-1
+menu-0-1 = Favorites
+menu-0-1-exec = menu-open-2
+menu-0-2 = Misc
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = Firefox
+menu-1-0-exec = firefox >/dev/null 2>&1 &
+menu-1-1 = Vivaldi
+menu-1-1-exec = vivaldi >/dev/null 2>&1 &
+
+menu-2-0 = Discord
+menu-2-0-exec = discord >/dev/null 2>&1 &
+menu-2-1 = kitty
+menu-2-1-exec = kitty >/dev/null 2>&1 &
+menu-2-2 = Spotify
+menu-2-2-exec = spotify >/dev/null 2>&1 &
+menu-2-3 = Nemo
+menu-2-3-exec = nemo >/dev/null 2>&1 &
+
+menu-3-0 = Calc
+menu-3-0-exec = gnome-calculator >/dev/null 2>&1 &
+menu-3-1 = Write
+menu-3-1-exec = libreoffice --writer >/dev/null 2>&1 &
+menu-3-2 = Monitor
+menu-3-2-exec = gnome-system-monitor >/dev/null 2>&1 &
+
+
+format = <label-toggle><menu>
+; format-underline = #fff
+;; label-open = "  "
+label-open = "%{A3:rofi -show drun -show-icons:}  %{A}"
+label-close = "  "
+
+label-separator = "    "
+
+;; ----------------------------------------------------------------------------
+
 
 [module/window]
 type = internal/xwindow
@@ -161,25 +219,6 @@ label = %title%
 label-maxlen = 15
 label-empty = "NAVI"
 
-[module/logo]
-type = custom/text
-content = "%{T7}   "
-;;content = "  EOOOO "
-;;content = "%{T7}E"
-content-font = 7
-content-foreground = ${colours.mainc}
-content-background = ${colours.logbg}
-
-[module/logosep]
-type = custom/text
-content = "%{T5}" 
-;;content = "%{T5}E"
-content-font = 5
-content-foreground = ${colours.logbg}
-content-background = ${colours.empbg}
-
-;; Center ---------------------------------------------------------------------
-
 [module/i3]
 type =                          internal/i3
 format =                        <label-mode><label-state>
@@ -188,46 +227,30 @@ wrapping-scroll =               false
 enable-click =                  true
 pin-workspaces = 		true
 
-;;label-mode =                    "%mode%"
-;;label-mode-padding =            1
-;;label-mode-background =         ${colours.mainbg}
-;;label-focused =                 "%{T2}%{T-}"
-;;label-focused-foreground =      ${colours.mainc}
-;;label-focused-background =      ${colours.mainbg}
-;;label-focused-padding =         1
-;;label-unfocused =               "%{T2}%{T-}"
-;;label-unfocused-background =    ${colours.mainbg}
-;;label-unfocused-foreground =    ${colours.mainc}
-;;label-unfocused-padding =       1
-;;label-urgent =                  "%{T2}%{T-}"
-;;;; ●
-;;label-urgent-foreground =       ${colours.mainc}
-;;label-urgent-background =       ${colours.mainbg}
-;;label-urgent-padding =          1
-;;label-visible =                 %icon%
-
 label-focused = %index%
 label-focused-padding = 3
-label-focused-font = 3
+label-focused-font = 0
 
 label-unfocused = %index%
 label-unfocused-foreground = ${colours.gray}
 label-unfocused-padding = 3
-label-unfocused-font = 3
+label-unfocused-font = 0
 
 label-visible = %index%
 label-visible-padding = 3
-label-visible-font = 3
+label-visible-font = 0
 
 label-urgent = %index%
 label-urgent-underline = ${colours.light-red}
 label-urgent-padding = 3
-label-urgent-font = 3
+label-urgent-font = 0
 
 [module/time]
 type =                      internal/date
 interval =                  1
 time =                      %I:%M
+time-alt = 		    %m/%d/%Y
+format = <label>
 label =                     "%{T-}%time%"
 format-foreground =         ${colours.mainc}
 format-background =         ${colours.mainbg}
@@ -238,11 +261,11 @@ interval = 0.5
 format = <label>
 format-padding = 2
 
-format-prefix = "  "
+format-prefix =
 format-prefix-foreground = ${colours.mainc}
 
 label = "%percentage% "
-label-font = 3
+label-font = 0
 
 [module/memory]
 type = internal/memory
@@ -252,21 +275,21 @@ format-padding = 2
 
 format-prefix =
 format-prefix-foreground = ${colours.mainc}
-label = " %gb_used%"
-label-font = 3
+label = " %gb_used% "
+label-font = 0
 
 [module/date]
 type =                      internal/date
 interval =                  600
 date =                      %m/%d/%Y
-label =                     "%{T-}  %date%   "
+label =                     "%{T-}  %date%"
 format-foreground =         ${colours.mainc}
 format-background =         ${colours.mainbg}
 
 [module/i3new]
 type =                      custom/text
-content-font =		    0
-content = 		    ""
+content-font =		    2
+content = 		    "%{T3}ﭝ%{T-}"
 click-left = ~/.i3nw/i3nw
 
 [module/spotify]
@@ -277,24 +300,6 @@ click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org
 click-middle = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 click-right = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
-;;[module/spotmp]
-;;type =          custom/text
-;;content-font = 7
-;;content =       "懶"
-;;click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-;;
-;;[module/spotmpr]
-;;type =          custom/text
-;;content-font = 7
-;;content =       "玲"
-;;click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-;;
-;;[module/spotmn]
-;;type =          custom/text
-;;content-font = 7
-;;content =       "怜"
-;;click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
 [module/cmus]
 type = custom/script
 interval = 1
@@ -304,3 +309,67 @@ click-middle = cmus-remote --prev
 click-left = cmus-remote --pause
 scroll-up = cmus-remote --volume +5%
 scroll-down = cmus-remote --volume -5%
+
+[module/pulse]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+;;format-volume = <ramp-volume> <label-volume>
+format-volume = <label-volume>
+format-muted = <label-muted>
+
+label-volume = "  VOL | %percentage%%"
+
+label-muted = "  VOL | MUTE"
+
+click-right = pavucontrol
+
+;; I hate this, it goes at a fraction
+;;ramp-volume-0 = "%{T5}ﱝ"
+;;ramp-volume-1 = "%{T5}"
+;;ramp-volume-2 = "%{T5}"
+;;ramp-volume-3 = "%{T5}"
+;;ramp-volume-4 = "%{T5}"
+;;ramp-volume-5 = "%{T5}"
+;;ramp-volume-6 = "%{T5}"
+;;ramp-volume-7 = "%{T5}"
+;;ramp-volume-8 = "%{T5}"
+;;ramp-volume-9 = "%{T5}"
+;;ramp-volume-10 = "%{T5}"
+;;ramp-volume-11 = "%{T5}"
+;;ramp-volume-12 = "%{T5}"
+;;ramp-volume-13 = "%{T5}"
+;;ramp-volume-14 = "%{T5}墳"
+;;ramp-volume-15 = "%{T5}墳"
+;;ramp-volume-16 = "%{T5}墳"
+;;ramp-volume-17 = "%{T5}墳"
+;;ramp-volume-18 = "%{T5}墳"
+;;ramp-volume-19 = "%{T5}墳"
+;;ramp-volume-20 = "%{T5}墳"
+;;
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 98
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = ${init.battery}
+adapter = ${init.adapter}
+
+poll-interval = 5
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = <label-full>
+time-format = %H:%M
+
+label-full = " CHARGE FULL "
+
+label-charging = " %{T3}%{T-}%percentage%% \\ %time%R "
+
+label-discharging = " %percentage%% \\ %time%R "
+;; ============================================================================
+;; CONF END ===================================================================
+;; ============================================================================
