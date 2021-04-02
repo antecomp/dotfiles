@@ -14,6 +14,7 @@ I use i3wm on top of xfce4, there's plenty of tutorials on how to do this online
 ## Screenshots
 ![Terminals and Feh](./term-feh-preview.png)
 ![Rofi](./rofi-preview.png)
+![Spotify](./spotify.png)
 
 ### My polybar uses some scripts.
 Spotify Currently Playing | [Polybar Spotify](https://github.com/Jvanrhijn/polybar-spotify), dependencies are python2 or 3, and the python dbus module
@@ -21,6 +22,7 @@ Spotify Currently Playing | [Polybar Spotify](https://github.com/Jvanrhijn/polyb
 I also use a rofi powermenu that I got from [here](https://github.com/adi1090x/rofi) <br/>
 I stole the neofetch in the first screenshot from [here](https://gist.github.com/Talljoe/929e205a08c1add22e7b325e35cac74d) <br/>
 My rofi uses [this icon theme](https://store.kde.org/p/1337328)
+My spotify theme is based on... [this](https://github.com/morpheusthewhite/spicetify-themes/tree/master/OldSchoolSenn)
 
 # Using
 ### Start by cloning the repo
