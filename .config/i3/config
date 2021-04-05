@@ -1,23 +1,20 @@
+#
+# vim: set foldmethod=marker
 #  _ _____                   
 # (_)___ /_      ___ __ ___  
 # | | |_ \ \ /\ / / '_ ` _ \ 
 # | |___) \ V  V /| | | | | |
 # |_|____/ \_/\_/ |_| |_| |_|
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------
 # Welcome to omni's nightmare i3 config, enjoy your stay!
-#
-# README: If you are using plain i3wm and no xfce, make sure to disable 
-# everything inside the SESSION SPECIAL section, and re-enable the commented
-# out i3-exit keybind. I also use a seperately compiled compositor, if you just 
-# run plain compton make sure to uncomment the exec compton line
-#
-# -----------------------------------------------------------------------------
-# // [ INDEX ] ////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////
-# // [GENERAL CONFIGURATION ] /////////////////////////////////////////////////
+# ------------------------------------------------------------------------------------
+# {{{ [ INDEX ] //////////////////////////////////////////////////////////////
+# ////////////////////////////////////////////////////////////////////////////
+# {{{ [GENERAL CONFIGURATION ] ////////////////////////////////////////////////
 # 	- Var Declaration
 # 	- Misc Globals
-# // [ KEYBOARD/MOUSE CONFIGURATION ] /////////////////////////////////////////
+# }}}
+# {{{ [ KEYBOARD/MOUSE CONFIGURATION ] ////////////////////////////////////////
 #	- Navigation
 #	- Movement
 #	- Modification
@@ -26,41 +23,44 @@
 #	- Focus Mode
 #	- Misc
 #	- Mouse Bindings
-# // [ THEMING ] //////////////////////////////////////////////////////////////
+# }}}
+# {{{ [ THEMING ] /////////////////////////////////////////////////////////////
 #	- Colours
 #	- Borders / Gaps
 #	- Misc
 #	- Bar (Disabled)
-# // [ AUTOSTART ] ////////////////////////////////////////////////////////////
+# }}}
+# {{{ [ AUTOSTART ] ///////////////////////////////////////////////////////////
 # 	- (Programs to launch when i3 is started)
-# // [ WINDOW RULES ] /////////////////////////////////////////////////////////
+# }}}
+# {{{ [ WINDOW RULES ] ////////////////////////////////////////////////////////
 # 	- (the for_window args, mainly used to float some windows)
-# // [ SESSION SPECIAL ] //////////////////////////////////////////////////////
+# }}}
+# {{{ [ SESSION SPECIAL ] /////////////////////////////////////////////////////
 #	- (things for xfce4)
-# // [ PROGRAM SHORTCUTS ] ////////////////////////////////////////////////////
+# }}}
+# {{{ [ PROGRAM SHORTCUTS ] ///////////////////////////////////////////////////
 # 	- Single
 # 	- Launchers
 # 	- Two-part (modes)
-#//////////////////////////////////////////////////////////////////////////////
-#//////////////////////////////////////////////////////////////////////////////
+# }}}
+#/////////////////////////////////////////////////////////////////////////////
+#//////////////////////////////////////////////////////////////////////////}}}
 
+# /////////////////////////////////////////////////////////////////////////////////////
+# [ CONF START ] //////////////////////////////////////////////////////////////////////
+# /////////////////////////////////////////////////////////////////////////////////////
 
+# {{{ [ GENERAL CONFIGURATION ] ///////////////////////////////////////////////
 
-#-----------------------------------------------------------------------------#
-##############################[ CONF START ]###################################
-#-----------------------------------------------------------------------------#
-
-
-
-# // [ GENERAL CONFIGURATION ] ////////////////////////////////////////////////
-
-# -- Declare Vars -- ----------------------------------------------------------
+# {{{ Declare Vars -- ---------------------------------------------------------
 # [Super Key As Mod]
 set $mod Mod4
 # [Set variable so L-Alt can also be used]
 set $alt Mod1
 
-# -- Misc Globals -------------------------------------------------------------
+# }}}
+# {{{ Misc Globals ------------------------------------------------------------
 # [Define font for dialogues]
 font pango:Kiona 9
 
@@ -71,9 +71,11 @@ workspace 1 output DP-2
 # [ Enable popup during fullscreen ]
 popup_during_fullscreen smart
 
-# // [ KEYBOARD/MOUSE CONFIGURATION ] /////////////////////////////////////////
+# }}}
+# }}}
+# {{{ [ KEYBOARD/MOUSE CONFIGURATION ] ////////////////////////////////////////
 #
-# -- Navigation -- ------------------------------------------------------------
+# {{{ Navigation -- -----------------------------------------------------------
 # 
 # -- Workspace Navigation -- --------------------------------------------------
 # [ Mod+# Nav ]
@@ -140,7 +142,8 @@ bindsym $mod+p focus parent
 # [ Focus Child ( Opposite ) ]
 bindsym $mod+Shift+p focus child
 
-# -- Movement -----------------------------------------------------------------
+# }}}
+# {{{ Movement ----------------------------------------------------------------
 # [Move within workspace]
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -213,13 +216,14 @@ bindsym $mod+Ctrl+m move to scratchpad
 bindsym $mod+Ctrl+a scratchpad show
 
 # [ Move window to next workspace ]
-bindsym $mod+$alt+grave exec --no-startup-id bash ~/.i3nw/naws
+bindsym $mod+$alt+grave exec --no-startup-id bash /home/omni/.i3nw/naws
 # [ Move window to next workspace and focus it ]
-bindsym $mod+Shift+grave exec --no-startup-id bash ~/.i3nw/naws -m
+bindsym $mod+Shift+grave exec --no-startup-id bash /home/omni/.i3nw/naws -m
 # [ Move window to previous workspace]
 bindsym $mod+Shift+a move container to workspace back_and_forth; workspace back_and_forth
 
-# -- Modification -- ----------------------------------------------------------
+# }}}
+# {{{ Modification -- ---------------------------------------------------------
 # [ Next orient/split ]
 bindsym $mod+BackSpace split toggle
 
@@ -230,14 +234,14 @@ bindsym $mod+t layout toggle tabbed splith splitv
 bindsym $mod+Shift+t split toggle; layout tabbed
 
 # [ Quick Resize ]
-bindsym $mod+Ctrl+Left resize shrink width 10 px or 2 ppt
-bindsym $mod+Ctrl+Down resize grow height 10 px or 2 ppt
-bindsym $mod+Ctrl+Up resize shrink height 10 px or 2 ppt
-bindsym $mod+Ctrl+Right resize grow width 10px or 2ppt 
-bindsym $mod+Ctrl+h resize shrink width 10 px or 2 ppt
-bindsym $mod+Ctrl+j resize grow height 10 px or 2 ppt
-bindsym $mod+Ctrl+k resize shrink height 10 px or 2 ppt
-bindsym $mod+Ctrl+l resize grow width 10px or 2ppt 
+bindsym $mod+Ctrl+Left resize shrink width 15 px or 5 ppt
+bindsym $mod+Ctrl+Down resize grow height 15 px or 5 ppt
+bindsym $mod+Ctrl+Up resize shrink height 15 px or 5 ppt
+bindsym $mod+Ctrl+Right resize grow width 15px or 5ppt 
+bindsym $mod+Ctrl+h resize shrink width 15 px or 5 ppt
+bindsym $mod+Ctrl+j resize grow height 15 px or 5 ppt
+bindsym $mod+Ctrl+k resize shrink height 15 px or 5 ppt
+bindsym $mod+Ctrl+l resize grow width 15px or 5ppt 
 
 # [ Resize to 50/50 split ]
 bindsym $mod+Shift+s resize set 50ppt
@@ -260,6 +264,9 @@ bindsym $mod+Shift+y floating enable; resize set 75ppt 95ppt; move position cent
 # 	> toggles between 2px border, titlebar and no border
 bindsym $mod+u border toggle 
 
+# [ Outer gap toggle ]
+bindsym $mod+Shift+g gaps outer current toggle 30
+
 # [ Sticky a window ]
 bindsym $mod+s sticky toggle
 
@@ -268,7 +275,8 @@ bindsym $mod+Shift+q [con_id="__focused__"] kill
 # [ Sigkill Program ]
 bindsym $mod+$alt+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
 
-# -- Management ---------------------------------------------------------------
+# }}}
+# {{{ Management --------------------------------------------------------------
 
 # [ Reload config ]
 bindsym $mod+Shift+c reload
@@ -279,9 +287,10 @@ bindsym $mod+Shift+r restart
 # [ Exit i3 (OLD // DISABLED // REF SESSION SPECIAL ) ]
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #
-# -- Modes (Management / Modification) ----------------------------------------
+# }}}
+# {{{ Modes (Management / Modification) ---------------------------------------
 #
-# [Resize Mode]
+# {{{ [Resize Mode]
 mode "Resize Mode" {
         bindsym Left resize shrink width 6 px or 6 ppt
         bindsym Down resize grow height 6 px or 6 ppt
@@ -308,6 +317,10 @@ mode "Resize Mode" {
         bindsym plus gaps inner current plus 6
         bindsym Shift+minus gaps inner current minus 12
         bindsym Shift+plus gaps inner current plus 12
+	bindsym $alt+plus gaps outer current plus 6
+	bindsym $alt+minus gaps outer current minus 6
+	bindsym $alt+Shift+minus gaps outer current minus 12
+	bindsym $alt+Shift+plus gaps outer current plus 12
 
 	# [ Preset Resizes ]
 	bindsym 1 resize set width 10ppt
@@ -340,7 +353,8 @@ mode "Resize Mode" {
 
 bindsym $mod+r exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Resize Mode"; mode "Resize Mode"
 
-# [ Border set ]
+# }}} 
+# {{{ [ Border set ]
 mode "Border Set" {
 	# Hide Border
 	bindsym n border none; mode "default"
@@ -354,8 +368,8 @@ mode "Border Set" {
 	bindsym Escape mode "default"
 } 
 bindsym $mod+b exec notify-send -i ~/.userassets/i3log.png "Mode Change" "Border Set"; mode "Border Set" 
-
-# -- [ Focus Mode ] -----------------------------------------------------------
+# }}}
+# {{{ [ Focus Mode ] ----------------------------------------------------------
 # 	> Focus mode is a mode used in a two part keybind to focus commonly
 # 	> open/used programs
 # 	> Chose mod+w because of one-hand conveinence and it's prox to mod+a 
@@ -379,7 +393,9 @@ mode "Quick Focus" {
 }
 bindsym $mod+w exec notify-send -i ~/.userassets/i3log.png "Quick Focus" "Focus an application"; mode "Quick Focus"
 
-# -- [ Misc ] -----------------------------------------------------------------
+# }}}
+# }}}
+# {{{ [ Misc ] ----------------------------------------------------------------
 # 
 # [ Multimedia // Laptop Oriented Stuff ]
 # 	> Commented out since xfce4 handles these, but may be needed for
@@ -409,8 +425,8 @@ bindsym $mod+XF86AudioPrev exec cmus-remote --prev
 bindsym $mod+XF86AudioRaiseVolume exec cmus-remote --vol +10%
 bindsym $mod+XF86AudioLowerVolume exec cmus-remote --vol -10%
 
-#
-# -- [ Mouse Bindings ] -------------------------------------------------------
+# }}}
+# {{{ [ Mouse Bindings ] ------------------------------------------------------
 #
 
 # [ Window focus follows mouse ]
@@ -436,10 +452,11 @@ bindsym --whole-window $mod+Shift+button4 floating toggle
 # 	> Similar to closing tabs on most web browsers
 bindsym --release button2 kill
 
-#//////////////////////////////////////////////////////////////////////////////
-# // [ THEMING ] //////////////////////////////////////////////////////////////
+# }}}
+# }}}
+# {{{ [ THEMING ] /////////////////////////////////////////////////////////////
 #
-# -- [ Colours ] --------------------------------------------------------------
+# {{{ [ Colours ] -------------------------------------------------------------
 # 	> For changing the opacity of UI elements, 
 # 	> append an opacity value in % at the
 # 	> end of the hex. Ex: 11aeb066 would be 66% opacity
@@ -455,8 +472,8 @@ client.unfocused        #040c1486 #040c1486 #909090 #484E50   #222222
 client.urgent           #2F343A #CC991E32 #FFFFFF #900000   #900000
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
-
-# -- [ Borders / Gaps ] -------------------------------------------------------
+# }}}
+# {{{ [ Borders / Gaps ] ------------------------------------------------------
 #
 # [ No border at all ]
 for_window [class="^.*"] border pixel 0
@@ -473,15 +490,18 @@ default_floating_border none
 title_align center
 
 # [ Gaps ]
-gaps inner 5
+gaps inner 11
 gaps outer 0
 # [ Hide gaps if only one window is present ]
 smart_gaps on
+# Only enable outer gaps when there is exactly one container
+# smart_gaps inverse_outer
 
-# -- [ Misc ] -----------------------------------------------------------------
+# }}}
+# {{{ [ Misc ] ----------------------------------------------------------------
 # pp poo poo 
-#
-# -- [ Bar ] ------------------------------------------------------------------
+# }}}
+# {{{ [ Bar ] -----------------------------------------------------------------
 # 	> Note: I don't use the bar anymore, but I keep it just in case
 bar {
   mode invisible
@@ -505,13 +525,12 @@ bar {
     }
  }
 
-# /////////////////////////////////////////////////////////////////////////////
-# // [ AUTOSTART ] ////////////////////////////////////////////////////////////
+# }}}
+# }}}
+# {{{ [ AUTOSTART ] ///////////////////////////////////////////////////////////
 
 # [ Wallpaper manager ]
 exec --no-startup-id nitrogen --restore
-# [ Start synergy ]
-exec --no-startup-id synergy
 # [ Compositor ]
 # exec compton 
 exec ~/git-shit/picom/build/src/picom
@@ -522,10 +541,10 @@ exec polybar main
 # [ On-desktop clock ]
 exec conky
 
-# /////////////////////////////////////////////////////////////////////////////
-# // [ WINDOW RULES ] /////////////////////////////////////////////////////////
+# }}}
+# {{{ [ WINDOW RULES ] ////////////////////////////////////////////////////////
 #
-# [ Float certain windows ]
+# {{{ [ Float certain windows ] -----------------------------------------------
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="xfce4-appfinder"] floating enable
@@ -535,20 +554,37 @@ for_window [class="Tomboy"] floating enable
 for_window [class="Zim"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="PacketTracer7"] floating enable
 for_window [title="Panel Preferences"] floating enable
+for_window [title="Developer Tools*"] floating enable
 for_window [class="(?i)Gedit"] floating enable
 for_window [class="(?i)gnome-system-monitor"] floating enable
 for_window [window_role="Msgcompose" class="(?i)Thunderbird"] floating enable
 # Remove later, this is to float the Discussion Dialogue Boxes 
 # since a tiled window is super broken
 for_window [title="View Post*"] floating enable
+# }}}
+
+# {{{ [ Misc ] ----------------------------------------------------------------
+
+for_window [class="Firefox" title="(.*Calendar.*)"] title_format Calendar
 
 # [ Titlebars on mpv and feh for a pop-up, mouse-managable window ]
-for_window [class="mpv"] border normal 0; focus;
+# for_window [class="mpv"] border normal 0; focus;
 for_window [class="feh"] border normal 0; focus;
 
-# /////////////////////////////////////////////////////////////////////////////
-# // [ SESSION SPECIAL ] //////////////////////////////////////////////////////
+# [ Resize mpv to fit on screen ]
+for_window [class="mpv"] resize set height 70ppt
+for_window [class="mpv"] move position center
+
+# [ Resize feh to fit on screen ]
+for_window [class="feh"] resize set height 70ppt
+for_window [class="feh"] resize set width 50ppt
+for_window [class="feh"] move position center
+
+# }}}
+# }}}
+# {{{ [ SESSION SPECIAL ] /////////////////////////////////////////////////////
 # 	> For plain i3, remove these. All of these shortcuts are for
 # 	> compatability with xfce4, which I use as a DE along i3wm
 
@@ -559,10 +595,10 @@ exec killall xfsettingsd
 # [ Use xfce logout instead of i3 logout ]
 bindsym $mod+Shift+e exec xfce4-session-logout
 
-# /////////////////////////////////////////////////////////////////////////////
-# // [ PROGRAM SHORTCUTS ] ////////////////////////////////////////////////////
+# }}}
+# {{{ [ PROGRAM SHORTCUTS ] ///////////////////////////////////////////////////
 #
-# -- [ Single ] ---------------------------------------------------------------
+# {{{ [ Single ] --------------------------------------------------------------
 
 # 	> Note that for the floating launchers, the program controls setting
 # 	> its own class, this will not work for some applications
@@ -577,6 +613,9 @@ bindsym $mod+Shift+Return exec kitty --class FKIT
 
 # [ Fallback terminal ]
 bindsym $mod+$alt+Return exec xfce4-terminal
+
+# [ Web Browser // Vivaldi ]
+bindsym $mod+v exec vivaldi
 
 # [ File manager ]
 bindsym $mod+Shift+n exec nemo
@@ -601,7 +640,8 @@ bindsym $mod+Shift+w exec winswitch
 # [ Launch rofi menu for renaming windows ]
 bindsym $mod+n exec ~/.prodscripts/roficus
 
-# -- [ Launchers ] ------------------------------------------------------------
+# }}}
+# {{{ [ Launchers ] -----------------------------------------------------------
 # 	> I have keybinds for both dmenu and rofi
 
 # [ dmenu ]
@@ -615,7 +655,13 @@ bindsym $mod+Shift+space exec rofi -show run
 ## [ Manage windows (Like an alt tab menu but not shit) ]
 bindsym $mod+Ctrl+space exec rofi -show window
 
-# -- [ Two-part (modes) ] -----------------------------------------------------
+## [ Rofi search directories ]
+bindsym $mod+$alt+d exec ~/.prodscripts/rofidir
+## [ Rofi search for files ]
+bindsym $mod+Shift+d exec ~/.prodscripts/rofiloc
+
+# }}}
+# {{{ [ Two-part (modes) ] ----------------------------------------------------
 # 	> I use modes to allow me to launch multiple different programs from
 # 	> one keybind set.
 
@@ -634,6 +680,7 @@ mode "Quick Launch" {
 	bindsym Shift+s exec steam; mode "default"
 	bindsym v exec vivaldi; mode "default"
 	bindsym Shift+v exec kitty vim; mode "default"
+	bindsym y exec ytfzf -D; mode "default"
 	bindsym z exec zathura; mode "default"
 	# Exit
 	bindsym Escape mode "default"
@@ -651,11 +698,13 @@ mode "Book Launch" {
 	bindsym l \
 		exec vivaldi "https://www.youtube.com/watch?v=5qap5aO4i9A" --new-window; \
 		exec notify-send -i ~/.userassets/i3log.png "Bookmark Launch" "Opening lofi radio..."; mode "default"
-# // GIT REPO NOTE // Many Bookmarks were removed due to linking to things relating to my college.
+	# Most bookmarks removed for github for privacy reasons.
 	bindsym Escape mode "default"
 }
 bindsym $mod+Shift+o exec notify-send -i ~/.userassets/i3log.png "Bookmark Launch" "Open a bookmark"; mode "Book Launch"
 
-# /////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////
-# [ CONF END ] ////////////////////////////////////////////////////////////////
+# }}}
+# }}}
+# /////////////////////////////////////////////////////////////////////////////////////
+# /////////////////////////////////////////////////////////////////////////////////////
+# [ CONF END ] ////////////////////////////////////////////////////////////////////////
