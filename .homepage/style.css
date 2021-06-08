@@ -1,0 +1,328 @@
+/* Fonts */
+@font-face {
+	font-family: "main";
+	src: url("./assets/Comfortaa/Comfortaa-Regular.ttf");
+}
+
+/* Variables */
+:root {
+	--bgc: #03090e;
+	--textc: #1d9ba2;
+	--tilec: #050f17;
+	--tilehc: #0b1f2f;
+	--borderc: teal;
+}
+
+
+/* Universals */
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/* Prevent Highlighting, Looks cleaner */
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  	-moz-user-select: none;     /* Firefox all */
+}
+
+body {
+	background-color: var(--bgc);
+	color: var(--textc);
+	font-family: "main";
+}
+
+a {
+	color: #146e8e;
+}
+
+button {
+	font-family: "main";
+	/* Remove the ugly outline when clicked */
+	outline: none !important;
+}
+
+/* Yeah  */
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    color: var(--tilehc);
+    background-color: var(--tilehc);
+}
+
+
+/* Elements */
+spacer {
+	margin-top: 13vh;
+	display: block;
+}
+
+.weatherwidget-io {
+	max-width: 70ch;
+	border-radius: 17px;
+	transform: translateX(-50%);
+    left: 50%;
+    text-align: center;
+    margin: 3ch 0;
+}
+
+.googleshit {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.googleshit input::placeholder {
+    text-align: center;
+	font-family: "main";
+}
+
+.googleshit input {
+    text-align: center;
+    color: var(--textc);
+    background-color: var(--tilec);
+    padding: 3px;
+    transition: max-width 0.3s ease-in-out, padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	font-size: 1.1em;
+	border-radius: 17px;
+    width: 98%;
+	max-width: 70ch;
+    border: none;
+	font-family: "main";
+}
+
+.googleshit input:hover {
+	max-width: 72ch; /* Makes the bar grow */
+	padding: 5px; /* Grows out the bar around the text*/
+	background-color: var(--tilehc);
+}
+
+.googleshit input:focus {
+	 outline: none;
+	 max-width: 72ch; /* Makes the bar grow */
+	 padding: 5px;
+	 background-color: var(--tilehc);
+}
+
+.linkcon {
+	grid-gap: 1ch;
+	margin: 4ch auto;
+	margin-bottom: 1ch;
+	width: 98%;
+	max-width: 75ch;
+	display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.linkcon a {
+    aspect-ratio: 1/1;
+	/* Interact with children */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: column;
+	overflow: hidden;
+	padding: 1ch;
+    text-align: center;
+	/* Styling  */
+	text-decoration: none;
+	background-color: var(--tilec);
+	border-radius: 7pt;
+	transition: all ease-in-out 0.36s;
+	filter: drop-shadow(-3px 4px 1px black);
+}
+
+.linkcon a:hover {
+	background-color: var(--tilehc);
+	color: white;
+	transform: rotate3d(1.5, 0.1, 1.9, 14deg) scale(1.1);
+    transform-style: preserve-3d;
+	z-index: 12;
+	filter: drop-shadow(-3px 4px 4px black);
+}
+
+.linkcon a:active * {
+	animation: flung 0.1s linear forwards;
+	animation-fill-mode: forwards;
+}
+
+@keyframes flung {
+	0% {
+		transform: none;
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100%  {
+		transform: none;
+	}
+}
+
+
+/* Prevents this ugly sudden overlap if two animations
+ * happen right next to eachother */
+a:not(a:hover) {
+	z-index: 10;
+}
+
+a:hover + a {
+	z-index: 8;
+}
+
+
+.linkcon a img {
+	display: block;
+	height: 50%;
+	/* Prevent image from being accidentally dragged, looks cleaner  */
+	pointer-events: none;
+	padding: 1ch;
+	aspect-ratio: 1/1;
+	/* Why do I need this why why why why why why why why why 
+	 * what what what what how how how how how hiw
+	 * im going to scream why was this the solution
+	 * Everything WILL break if you touch this help help help help */
+    max-width: 50%;
+	min-height: 50%;
+	/* Was too lazy to re-render old icons; just hue-shift them */
+	filter: hue-rotate(45deg) saturate(1.5);
+}
+
+#extrabutton {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 2ch;
+	transition: background-color ease-in-out 0.2s;
+	cursor: pointer;
+	background-color: var(--tilec);
+	color: var(--textc);
+	padding: 1ch 6ch;
+	border-radius: 4px;
+	filter: drop-shadow(-3px 4px 1px black);
+}
+
+#extrabutton:hover {
+	background-color: var(--tilehc);
+}
+
+#quote {
+	align-self: center;
+	color: #3a4752;
+	text-align: center;
+}
+
+
+@media only screen and (max-width: 720px) {
+	.linkcon {
+		grid-template-columns: repeat(3, 1fr)
+		/* flex-basis: 40% !important; */
+	}
+	.linkcon a:hover {
+		background-color: var(--tilehc);
+		color: white;
+		transform: none;
+		z-index: 12;
+	/*	transition-delay: 0.1s; */
+	}
+	.googleshit input {
+		font-size: 1.4em;
+	}
+}
+
+
+#popup {
+	position: fixed;
+	width: 97%;
+	height: 50vh;
+	min-height: 40ch;
+	max-width: 100ch;
+	background-color: var(--tilec);
+	z-index: 999999999999999;
+	left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+	text-align: center;
+	border-radius: 15px;
+	overflow: auto;
+	padding: 1ch;
+	box-shadow: -5px 5px 5px #000000;
+}
+
+#popup h1 {
+	text-decoration: underline;
+}
+
+#popup ul {
+	list-style: none;
+	text-align: left;
+	overflow: auto;
+    height: 91%;
+}
+
+#popup a {
+	margin-left: 1ch;
+	font-size: 1.1em
+}
+
+#popup a:hover {
+	filter: brightness(1.8);
+}
+
+#popup img {
+	filter: hue-rotate( 45deg) saturate(1.5);
+}
+
+
+#popup::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+#closepopup {
+	position: absolute;
+	right: 1ch;
+	top: 1ch;
+	background-color: var(--tilehc);
+	color: var(--textc);
+	padding: 1ch 1.5ch;
+	border-radius: 100%;
+	cursor: pointer;
+	transition: filter ease-in-out 0.2s;
+}
+
+#closepopup:hover {
+	filter: brightness(1.8);
+}
+
+/* Offline Warning Popup */
+#OFFLINE {
+	position: fixed;
+	top: 0;
+	z-index: 9999999999999999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	font-size: 1.5rem;
+	font-weight: bolder;
+	flex-direction: column;
+	color: darkred;
+	background-color: var(--bgc);
+}
+
+button#reload {
+    background: var(--tilehc);
+    color: var(--textc);
+    padding: 1ch 5ch;
+    margin-top: 2ch;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+button#reload:hover {
+    border-bottom: solid 2px teal;
+    margin-top: calc(2ch - 2px);
+}

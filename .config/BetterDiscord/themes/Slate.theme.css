@@ -1,0 +1,177 @@
+/**
+ * @name Slate
+ * @author Gibbu#1211 & Tropical#8908
+ * @version 1.3
+ * @invite TeRQEPb
+ * @description An optimized, consistent, and functional theme for Discord based on GitHub's design language.
+ * @source https://github.com/DiscordStyles/Slate/
+ * @website https://discordstyles.github.io/slate-theme/
+*/
+
+/*        _____                    _____            _____                _____                    _____
+         /\    \                  /\    \          /\    \              /\    \                  /\    \
+        /::\    \                /::\____\        /::\    \            /::\    \                /::\    \
+       /::::\    \              /:::/    /       /::::\    \           \:::\    \              /::::\    \
+      /::::::\    \            /:::/    /       /::::::\    \           \:::\    \            /::::::\    \
+     /:::/\:::\    \          /:::/    /       /:::/\:::\    \           \:::\    \          /:::/\:::\    \
+    /:::/__\:::\    \        /:::/    /       /:::/__\:::\    \           \:::\    \        /:::/__\:::\    \
+    \:::\   \:::\    \      /:::/    /       /::::\   \:::\    \          /::::\    \      /::::\   \:::\    \
+  ___\:::\   \:::\    \    /:::/    /       /::::::\   \:::\    \        /::::::\    \    /::::::\   \:::\    \
+ /\   \:::\   \:::\    \  /:::/    /       /:::/\:::\   \:::\    \      /:::/\:::\    \  /:::/\:::\   \:::\    \
+/::\   \:::\   \:::\____\/:::/____/       /:::/  \:::\   \:::\____\    /:::/  \:::\____\/:::/__\:::\   \:::\____\
+\:::\   \:::\   \::/    /\:::\    \       \::/    \:::\  /:::/    /   /:::/    \::/    /\:::\   \:::\   \::/    /
+ \:::\   \:::\   \/____/  \:::\    \       \/____/ \:::\/:::/    /   /:::/    / \/____/  \:::\   \:::\   \/____/
+  \:::\   \:::\    \       \:::\    \               \::::::/    /   /:::/    /            \:::\   \:::\    \
+   \:::\   \:::\____\       \:::\    \               \::::/    /   /:::/    /              \:::\   \:::\____\
+    \:::\  /:::/    /        \:::\    \              /:::/    /    \::/    /                \:::\   \::/    /
+     \:::\/:::/    /          \:::\    \            /:::/    /      \/____/                  \:::\   \/____/
+      \::::::/    /            \:::\    \          /:::/    /                                 \:::\    \
+       \::::/    /              \:::\____\        /:::/    /                                   \:::\____\
+        \::/    /                \::/    /        \::/    /                                     \::/    /
+         \/____/                  \/____/          \/____/                                       \/____/
+
+====================================================================================
+ Please view the full documentation at https://github.com/DiscordStyles/Slate/wiki
+====================================================================================
+*/
+
+/*
+====================================================================================
+                                Import Source Code
+====================================================================================
+*/
+
+@import url("https://discordstyles.github.io/AdjustableServerWidth/base.css");
+@import url("https://discordstyles.github.io/Slate/base.css");
+
+/*
+====================================================================================
+                                  Basic Variables
+====================================================================================
+*/
+
+/*A full list of variables and their uses can be found in the documentation above.*/
+
+:root {
+  /*Primary Colors*/
+  --accent: 4, 84, 96;
+  --link-colour: 48, 144, 255;
+
+  /*Server List*/
+  --server-icon-size: 35px;
+  --server-icon-spacing: 8px;
+  --server-container-padding: 10px;
+  /* User Added, Increase Font Size */
+      --font-size: 16px !important;
+  /* Online status colour */
+  --status-green: 7, 195, 224 !important;
+}
+
+/*
+====================================================================================
+                Please place any Theme-specific Custom CSS Below here
+====================================================================================
+*/
+.theme-dark,
+html.theme-dark #app-mount .theme-light .root-1gCeng,
+html.theme-dark .force-theme.theme-light {
+  --base-border: #141414;
+  --text-normal: #d1d5da;
+  --text-muted: #959da5;
+  --text-focus: #ffffff;
+  --text-link: rgb(var(--link-colour));
+/*  --background-light: #090909;
+  --background: #020202;
+  --background-alt: #070707;
+  --background-dark: #010101;  
+  --toolbar-background: #050505;
+  --guilds-background:var(--background); */
+  --background-light: #070e16;
+  --background: #050a0f;
+  --background-alt: #060d14;
+  --background-dark: #04080c;
+  --guilds-background:var(--background); 
+  --white:#ffffff;
+  --scrollbar-background: rgb(255 255 255 / 0.1);
+  --scrollbar-background-hover: rgb(255 255 255 / 0.2);
+  --scrollbar-background-active: rgb(255 255 255 / 0.3);
+  --background-modifier-hover: var(--background-light);
+  --background-modifier-active: #444d56;
+  --background-modifier-selected: var(--accent-solid);
+  --syntax-blue:#79b8ff;
+  --syntax-purple:#b392f0;
+  --syntax-grey:#959da5;
+  --syntax-grey-alt:#d1d5da;
+  --syntax-orange:#ffab70;
+  --syntax-green:#56b6c2;
+  --toolbar-background: #07121c;
+/* Make the borders around everything but the top bar transparent, looks good but you may wanna remove */
+  --base-border: #14141400;
+/* Make top-bar border transparent too */
+    --toolbar-border: #14141400;
+}
+
+/* Since im using bold by default, I will mark bold text by making it red */
+.markup-2BOw-j strong {
+    font-weight: 700;
+    color: red;
+}
+
+@font-face{
+    font-family: 'altfontA';
+src: url('https://omnipresence.space/assets/trench.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Glowing Usernames
+h2 span {
+    text-shadow: 0px 0px 7px;
+}
+*/
+
+
+/* Greentext 
+#app-mount .repliedMessage-VokQwo:after {
+    content: ">";
+    position: absolute;
+    top: 5px;
+    left: -4px;
+    z-index: 0;
+    color: #49ff59 !important;
+    font-size: 15px;
+}
+#app-mount .repliedMessage-VokQwo {
+   color: #49ff59;
+}*/
+
+
+/* Curved bottom for dms */
+#app-mount .chat-3bRxxu {
+    background: var(--background-alt);
+}
+
+#app-mount .messagesWrapper-1sRNjr {
+    background: var(--background-alt);
+    z-index: 1;
+    border-radius: 0 0 0 20px;
+}
+
+.content-yTz4x3 {
+    background: var(--background-light);
+}
+
+
+/* Online colour */
+.wrapper-3t9DeA .cursorDefault-dsQJ1n rect {
+    fill: mediumturquoise;
+}
+
+#app-mount .profileBanner-33-uE1 {
+    background: #020508 !important;
+}
+
+.headerTop-2cWpdB {
+	/* Stupidass padding under profile, discord devs need meds */
+    background-color: transparent;
+}

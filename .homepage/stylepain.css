@@ -1,0 +1,154 @@
+/* Fonts */
+@font-face {
+	font-family: "main";
+	src: url("./assets/Comfortaa/Comfortaa-Regular.ttf");
+}
+
+/* Variables */
+:root {
+	--bgc: #03090e;
+	--textc: mediumseagreen;
+	--tilec: #050f17;
+	--tilehc: #0b1f2f;
+	--borderc: teal;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	background-color: var(--bgc);
+	color: var(--textc);
+	font-family: "main";
+}
+
+a {
+	color: #146e8e;
+}
+
+/* Style Common Items */
+
+/* Elements */
+.container {
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weatherwidget-io {
+	max-width: 70ch;
+	border-radius: 17px;
+	transform: translateX(-50%);
+    left: 50%;
+    text-align: center;
+    margin: 3ch 0;
+}
+
+.googleshit {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.googleshit input {
+    width: 98%;
+	max-width: 70ch;
+    border: none;
+}
+
+.googleshit input::placeholder {
+    text-align: center;
+	font-family: "main";
+}
+
+.googleshit input {
+    text-align: center;
+    color: var(--textc);
+    background-color: var(--tilec);
+    padding: 3px;
+    transition: max-width 0.3s ease-in-out, padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	font-size: 1.1em;
+	border-radius: 17px;
+}
+
+.googleshit input:hover {
+	max-width: 72ch; /* Makes the bar grow */
+	padding: 5px; /* Grows out the bar around the text*/
+	background-color: var(--tilehc);
+}
+
+.googleshit input:focus {
+	 outline: none;
+	 max-width: 72ch; /* Makes the bar grow */
+	 padding: 5px;
+	 background-color: var(--tilehc);
+}
+
+
+
+
+
+.linkcon {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 1ch;
+	margin: 4ch auto;
+	width: 98%;
+	max-width: 75ch;
+}
+
+.linkcon a {
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-flow: column;
+	text-decoration: none;
+	background-color: var(--tilec);
+	border-radius: 7pt;
+	transition: all ease-in-out 0.36s;
+}
+
+.linkcon a:hover {
+	background-color: var(--tilehc);
+	color: white;
+	transform: rotate3d(1.5, 0.1, 1.9, 14deg) scale(1.1);
+    transform-style: preserve-3d;
+	z-index: 12;
+/*	transition-delay: 0.1s; */
+}
+
+/* Prevents this ugly sudden overlap if two animations
+ * happen right next to eachother */
+a:not(a:hover) {
+	z-index: 10;
+}
+
+a:hover + a {
+	z-index: 8;
+}
+
+
+.linkcon a img {
+	display: block;
+	height: 50%;
+	padding: 1ch;
+	aspect-ratio: 1/1;
+	/* Why do I need this why why why why why why why why why 
+	 * what what what what how how how how how hiw
+	 * im going to scream why was this the solution
+	 * Remove it and see how shit breaks! :) */
+    max-width: 50%;
+}
+
+#quote {
+	align-self: center;
+	color: #3a4752;
+	text-align: center;
+}

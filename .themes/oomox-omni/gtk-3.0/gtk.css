@@ -1,0 +1,49 @@
+@import url("resource:///org/gnome/arc-theme/gtk-main.css");
+
+/* Custom Styling -- Nemo Current Path Box */
+.nemo-window entry {
+  background-color: #061927;
+}
+
+/* Custom Styling -- Xfce Panel window switcher buttons */
+.xfce4-panel .tasklist .toggle {
+    background-color: transparent;
+	border-top-width: 2px;
+	border-top-color: transparent;
+	border-top-style: solid;
+}
+
+.xfce4-panel .tasklist .toggle:checked {
+    background-color: transparent;
+	border-top-width: 2px;
+	border-top-color: #11aeb0;
+	border-top-style: solid;
+}
+
+.xfce4-panel .tasklist .toggle:hover {
+    background-color: transparent;
+	border-top-width: 2px;
+	border-top-color: #0b7676;
+	border-top-style: solid;
+}
+
+/* Custom Styling -- Xfce panel window switcher */
+/* Pager number may vary: Hover over item in panel preferences to view item name */
+#pager-14 button {
+    background-color: transparent;
+	border-top-width: 2px;
+	border-top-color: transparent;
+	border-top-style: solid;
+}
+#pager-14 button:checked {
+    background-color: transparent;
+	border-top-width: 2px;
+	border-top-color: #11aeb0;
+	border-top-style: solid;
+}
+#pager-14 button:hover {
+    background-color: transparent;
+	border-top-width: 2px;
+	border-top-color: #0b7676;
+	border-top-style: solid;
+}

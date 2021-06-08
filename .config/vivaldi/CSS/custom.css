@@ -1,0 +1,98 @@
+* {
+font-family: "Comfortaa" !important;
+}
+
+:root {
+	--colorAccentBg: #03090e !important;
+	/* Sidebar tab colour */
+	--colorTabBar: #02060a !important;
+}
+
+html {
+    --colorBgLightIntense: #03090e !important;
+	--colorBorder: #05111a !important;
+	--colorHighlightBg: #124c5c !important;
+}
+
+#header { display: none; }
+
+/* Quick command menu translucency */
+#modal-bg
+{
+    /* background-color: var(--colorBgAlpha); */
+    background-color: #040e16;
+    backdrop-filter: blur(10px);
+	border-radius: 5px;
+}
+
+#browser, #browser ~ div {
+    background: #02060a;
+}
+
+.ReactVirtualized__Grid.ReactVirtualized__List::-webkit-scrollbar {
+    /* width: 6px; */
+    display: none;
+}
+
+/* Sets the background color to any non-selected 
+ * element of the quick command menu to transparent */
+#modal-bg *:not([data-selected])
+{
+    background-color: rgba(0,0,0,0)!important;
+}
+
+/* Remove outline around selected tab, make it so they rotate slightly instead */
+.theme-dark .tab-position .tab.active .tab-header .favicon:not(.svg) {
+    /* filter: drop-shadow(1px 0 0 rgba(246, 246, 246, 0.75)) drop-shadow(-1px 0 0 rgba(246, 246, 246, 0.75)) drop-shadow(0 1px 0 rgba(246, 246, 246, 0.75)) drop-shadow(0 -1px 0 rgba(246, 246, 246, 0.75)); */
+    filter: none;
+    transform: rotate(16deg) !important;
+}
+
+.SearchField, .UrlBar-AddressField {
+    background-color: #05111b;
+}
+
+.OmniDropdown {
+	background-color: #03090e;
+}
+
+.OmniDropdown::-webkit-scrollbar {
+	display: none;
+}
+
+
+#panels-container.right #switch {
+    box-shadow: none;
+}
+
+.color-behind-tabs-off .toolbar-mainbar > .button-toolbar > button:hover, .color-behind-tabs-off .toolbar-mainbar > .toolbar-group > .button-toolbar > button:hover, .color-behind-tabs-off .toolbar-mainbar > .button-toolbar > button:active, .color-behind-tabs-off .toolbar-mainbar > .toolbar-group > .button-toolbar > button:active {
+    background-color: #040d15;
+}
+
+.button-popup {
+    background-color: #03090e;
+}
+
+.button-toolbar > button:disabled {
+    border-color: var(--colorBorder) !important;
+}
+
+
+/* Sidebar tab bg colour */
+#browser:not(.tabs-top) #tabs-tabbar-container {
+    background-color: #02060a;
+}
+
+/* Mainly seen on new bookmark dialogue */
+.DialogContent {
+    background-color: #040c13;
+}
+
+.BookmarkLocationSelector-ToggleButtonGroup-Button:focus, .BookmarkLocationSelector-ToggleButtonGroup-Button--Pressed {
+    background-color: #040c13;
+}
+
+/* Add border to left of active tab */
+#browser .tab-position .tab.active {
+    border-left: solid 2px #10626e;
+}

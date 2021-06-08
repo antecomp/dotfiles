@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New Tab~</title>
+	<link rel="stylesheet" href="style.css" media="all">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="https://cdn.discordapp.com/attachments/644042977240547341/781032824107040778/vivaldi.svg">
+</head>
+<body>
+	<!-- EXTRA LINKS {{{ -->
+	<script src="./scripts/extralinks.js"></script>
+	<script src="./scripts/online.js"></script>
+	<div id="popup" style="display:none">
+	<button id="closepopup" onclick="showExtra()">X</button>
+	<h1>Extra Links</h1>
+		<ul>
+				<li>
+					<img src="./icons/library.svg" alt="">
+				</li>
+				<li>
+					<a href="#">Link</a>
+				</li>
+				<li>
+					<br>
+				</li>
+				<li>
+					<img src="./icons/4chan.svg" class="linkheader" alt="4chan">
+				</li>
+				<li>
+					<a href="https://boards.4chan.org/g/">/g/</a> 
+					<a href="https://boards.4chan.org/mu/">/mu/</a> 
+					<a href="https://boards.4chan.org/r9k/">/r9k/</a> 
+					<a href="https://boards.4chan.org/s4s/">/s4s/</a> 
+					<a href="https://boards.4chan.org/wg/">/wg/</a> 
+					<a href="https://boards.4chan.org/x/">/x/</a>
+				</li>
+				<li>
+					<br>
+				</li>
+			<li>
+				<img src="./icons/reddit.svg" alt="Reddit">
+			</li>
+			<li>
+				<a href='https://www.reddit.com/r/archlinux/'>r/archlinux/</a>
+				<a href='https://www.reddit.com/r/i3wm/'>r/i3wm</a>
+				<a href='https://www.reddit.com/r/linux/'>r/linux</a>
+				<a href='https://www.reddit.com/r/linuxmint/'>r/linuxmint</a>
+				<a href='https://www.reddit.com/r/unixporn/'>r/unixporn</a>
+				<a href='https://www.reddit.com/r/vim/'>r/vim</a>
+				<a href='https://www.reddit.com/r/vimporn/'>r/vimporn</a>
+				<a href='https://www.reddit.com/r/vivaldibrowser/'>r/vivaldibrowser</a>
+			</li>
+			<li>
+				<br>
+			</li>
+				<li>
+					<img src="./icons/map-globe.svg" alt="Web Dev">
+				</li>
+				<li>
+					<a href="https://developer.mozilla.org/en-US/" target="_self">Mozilla Docs</a>
+				</li>
+				<li>
+					<br>
+				</li>
+				<li>
+					<img src="./icons/ad.svg" alt="Lain">
+				</li>
+				<li>
+					<a href="#">Link</a>
+				</li>
+				<li>
+					<br>
+				</li>
+				<li>
+					<img src="./icons/music.svg" alt="Web Radios">
+				</li>
+				<li>
+					<a href="https://lainon.life">Lainon</a>
+					<a href="http://206.217.213.235:8230/;stream/" target= "_blank">100Hits Alternative Radio</a> 
+					<a href="http://streams.fluxfm.de/Chillhop/mp3-320" target= "_blank">Chillhop Lofi Radio</a> 
+					<a href= "http://streams.fluxfm.de/elecimp/mp3-128/streams.fluxfm.de/play.m3u" target="_blank">Electronic Improvisation</a> 
+					<a href="http://eilo.org:8000/ambient" target="_blank">Ellos Ambient/Chill Radio</a> 
+					<a href="http://ubuntu.hbr1.com:19800/ambient.ogg" target= "_blank">HBR1 Dream Factory</a> 
+					<a href="http://ubuntu.hbr1.com:19800/trance.ogg" target= "_blank">HBR1 Tranceponder</a> 
+					<a href="untu.hbr1.com:19800/tronic.ogg" target="_blank">HBR1 Tronic</a> 
+					<a href="http://hyades.shoutca.st:8043/stream2" target= "_blank">Lofi Hiphop Radio</a> 
+					<a href="http://81.219.54.6:8002/" target="_blank">Nirvana Ambient Music</a> 
+					<a href="http://icecast.westerfunk.net:8004/radiofunk.mp3" target= "_blank">Radio Funk</a> 
+					<a href="http://stream-dc1.radioparadise.com/rp_192m.ogg" target= "_blank">Radio Paradise</a> 
+					<a href="https://stream.radioparadise.com/rock-192" target= "_blank">Radio Paradise - Rock Mix</a> 
+					<a href="http://eteris.startfm.lt/startfm.ogg" target= "_blank">StartFM Underground</a> 
+					<a href="http://air.radiorecord.ru:805/synth_320" target= "_blank">Synthwave 320 Radio</a> 
+					<a href="http://139.162.14.151:9090/" target= "_blank">Synth/retrowave Radio</a> 
+					<a href= "http://streams.fluxfm.de/technoug/mp3-320/streams.fluxfm.de/play.m3u" target="_blank">Techno Underground</a> 
+					<a href="http://krelez.chris-the-tuner.de:15000/vaporradio_hqmp3" target="_blank">Vaporfunk Radio</a> 
+					<a href="http://wknc.sma.ncsu.edu:8000/wknchq.ogg.m3u" target= "_blank">WK NC State Radio</a> 
+					<a href="http://vu.wsum.wisc.edu/wsumlive.m3u" target="_blank">WSUM (Wisconsin University) Radio</a> 
+					<a href="https://stream.wuvt.vt.edu/wuvt-hq.ogg" target= "_blank">WUVT (Virginia Tech)</a>
+				</li>
+			</ul>
+	</div>
+	<!-- }}} -->
+	<spacer></spacer>
+		<!-- Weather Widget -->
+		<a class="weatherwidget-io" href="https://forecast7.com/en/39d74n104d99/denver/?unit=us" data-label_1="DENVER" data-label_2="WEATHER" data-font="Roboto" data-icons="Climacons" data-mode="Current" data-days="3" data-theme="original" data-basecolor="#050f17" data-cloudfill="#1e3240" >DENVER WEATHER</a>
+		<script>
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+		</script>
+		<!-- Weather Widget -->
+		<form class="googleshit" method="get" action="http://www.duckduckgo.com/">
+			<!-- <form class="googleshit" method="get" action="http://www.google.com/search"> -->
+			<input type="text" accesskey="s" placeholder="Search" autocomplete="off" name="q" size="31" maxlength="255" value="" />
+		</form>
+		<div class="linkcon">
+			<a href="https://youtube.com">
+				<img src="./icons/youtube.svg" alt="">
+				<p>YouTube</p>
+			</a>
+			<a href="https://ground.news">
+				<img src="./icons/news-subscribe.svg" alt="">
+				<p>Ground News</p>
+			</a>
+			<a href="https://4chan.org">
+				<img src="./icons/4chan.svg" alt="">
+				<p>4chan</p>
+			</a>
+			<a href="https://photos.google.com">
+				<img src="./icons/google-photos.svg" alt="">
+				<p>Photos</p>
+			</a>
+			<a href="#">
+				<img src="./icons/ad.svg" alt="">
+				<p>Link</p>
+			</a>
+			<a href="https://github.com">
+				<img src="./icons/github-desktop.svg" alt="">
+				<p>Github</p>
+			</a>
+			<!-- Row End -->
+			<a href="http://radio.dangeru.us">
+				<img src="./icons/music.svg" alt="">
+				<p>Radio Dangeru.us </p>
+			</a>
+			<a href="https://eff.org">
+				<img src="./icons/image-red-eye.svg" alt="">
+				<p>EFF</p>
+			</a>
+			<a href="https://reddit.com">
+				<img src="./icons/reddit.svg" alt="">
+				<p>Reddit</p>
+			</a>
+			<a href="https://instagram.com">
+				<img src="./icons/instagram.svg" alt="">
+				<p>Instagram</p>
+			</a>
+		</div>
+		<button id="extrabutton" onclick="showExtra()">MORE SHORTCUTS</button>
+		<p id="quote">If you can be told what you can see or read <br>  Then it follows that you can be told what to say or think</p>
+</body>
+</html>
