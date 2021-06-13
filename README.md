@@ -30,9 +30,12 @@ Discord themes based on... [this](https://github.com/DiscordStyles/Slate) <br />
 Gtk theme generated using [oomox](https://github.com/themix-project/oomox) <br />
 [Icon theme](https://github.com/cbrnix/Flatery) <br />
 
+### Notices
+My .conkyrc is a bit janky in order to work with multi-monitor, you may need to edit the gap x and gap y values to position is properly.
+
 # Using
 ### Start by cloning the repo
-`git clone https://github.com/Shizzledoink/dotfiles.git`
+`git clone https://github.com/antecomp/dotfiles.git`
 ### Install Fonts by moving or copying them to ~/.local/share/fonts:
 `cp dotfiles/fonts/* ~/.local/share/fonts/`
 ### Move scripts to your home directory
