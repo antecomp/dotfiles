@@ -1,0 +1,15 @@
+{
+  "name": "omni",
+  "colors": {
+    "--color-long-round":"#27ab58",
+    "--color-short-round":"#27a5b8",
+    "--color-focus-round":"#27ab58",
+    "--color-background":"#030b0e",
+    "--color-background-light":"#030b0e",
+    "--color-background-lightest":"#185f79",
+    "--color-foreground":"#064165",
+    "--color-foreground-darker":"#042145",
+    "--color-foreground-darkest":"#04244c",
+    "--color-accent":"#3cb371"
+  }
+}
