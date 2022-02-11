@@ -1,0 +1,49 @@
+# vim: foldmethod=marker :
+# vim:fileencoding=utf-8:ft=conf:foldmethod=marker
+# ------------------------------------------------------------------------------------
+# Configurations Unique to my laptop - Touchpad + Custom media controls
+# ------------------------------------------------------------------------------------
+
+
+# {{{ [ KEYBOARD/MOUSE CONFIGURATION ] ////////////////////////////////////////
+ 
+# [ Multimedia // Laptop Oriented Stuff ]
+# 	> Commented out since xfce4 handles these, but may be needed for
+# 	> plain i3wm users.
+#
+#
+# [ Pulse Audio controls ]
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# [ Sreen brightness controls ]
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# [ Media player controls ]
+# bindsym XF86AudioPlay exec playerctl play
+# bindsym XF86AudioPause exec playerctl pause
+# bindsym XF86AudioNext exec playerctl next
+# bindsym XF86AudioPrev exec playerctl previous
+#
+# bindsym $mod+XF86AudioRaiseVolume exec cmus-remote --vol +10%
+# bindsym $mod+XF86AudioLowerVolume exec cmus-remote --vol -10%
+
+
+# [ Mod+vol Spotify controls ]
+bindsym $mod+XF86AudioRaiseVolume exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym $mod+XF86AudioLowerVolume exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym $mod+XF86AudioMute exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+                                                                           #}}}
+# {{{ [AUTOSTART] --------------------------------------------------------------------------
+#
+# [ Touchpad gestures for laptop ]
+exec libinput-gestures
+# [ Pimenu ]
+exec /home/dlc/gitted/pmenu/pmenu.sh
+# [ Compositor ]
+exec ~/picom/build/src/picom
+
+																				       #}}}

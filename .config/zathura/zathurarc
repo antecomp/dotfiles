@@ -2,7 +2,9 @@
 #
 # Recolor PDFs to dark theme by default
 set recolor "true"
-set recolor-keephue "true"
+set recolor-keephue "false"
+# Use system clipboard
+set selection-clipboard clipboard
 #
 # Note to self: Press "s" to have the document cover 100% screen width, I dont wanna config it and I prefer the zoomed out.
 #
@@ -20,18 +22,22 @@ set recolor-keephue "true"
 # -----------------  UI Color Config -----------------------
 #
 # Command Bar Colours 
-set inputbar-bg 		"black"
+set inputbar-bg 		"#040c13"
 set inputbar-fg 		"#5dacbc"
 # Dark Mode Foreground
 set recolor-darkcolor 		"#cecece"
-# set recolor-lightcolor "#000000" < Commented because default anyway
+set recolor-lightcolor "#03090e"
+set default-bg "#03090e"
+# ^ Main application bg color, seperate from pdf recolour
+# Statusbar colour
+set statusbar-bg "#02070c"
 # Completion Mode Colours
-set completion-bg 		"#080808"
+set completion-bg 		"#050f18"
 set completion-fg 		"#5dacbc"
 # Completion-group are the titlebars for the sections, Ex: "Recent Documents"
-set completion-group-bg 	"#0b0b0b"
+set completion-group-bg 	"#05111b"
 set completion-group-fg 	"#67bfd0"
-set completion-highlight-bg	"#71d4e5"
-set completion-highlight-fg	"#23232d"
+set completion-highlight-bg	"#050f18"
+set completion-highlight-fg	"#7eeaff"
 # Mouse-Highlight Colour
-set highlight-color		"#3e737d"
+set highlight-color		"#064546"

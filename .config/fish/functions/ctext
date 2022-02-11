@@ -1,0 +1,7 @@
+#!/bin/bash
+for i in $(eval echo "{1..$(tput cols)}");do echo -n ─; done; echo ""
+# printf "%*s\n" $(( ( $(echo "⬡Hello User $USER⬡" | wc -c ) + $(tput cols) ) / 2 )) "⬡ Hello User ${USER^} ⬡"
+printf "%*s\n" $(( ( $(echo "⬡Hello User $USER⬡ " | wc -c ) + $(tput cols) ) / 2 )) "⬢ Hello User ${USER^} ⬢ "
+printf "%*s\n" $(( ( $(echo "Awaiting your input..." | wc -c ) + $(tput cols) ) / 2 )) "Awaiting your input...   "
+# printf %$(tput cols)\s |tr " " "-"
+for i in $(eval echo "{1..$(tput cols)}");do echo -n ─; done; echo ""

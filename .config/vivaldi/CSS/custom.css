@@ -6,6 +6,7 @@ font-family: "Comfortaa" !important;
 	--colorAccentBg: #03090e !important;
 	/* Sidebar tab colour */
 	--colorTabBar: #02060a !important;
+	--colorFg: #46bcc6 !important;
 }
 
 html {
@@ -44,7 +45,7 @@ html {
 /* Remove outline around selected tab, make it so they rotate slightly instead */
 .theme-dark .tab-position .tab.active .tab-header .favicon:not(.svg) {
     /* filter: drop-shadow(1px 0 0 rgba(246, 246, 246, 0.75)) drop-shadow(-1px 0 0 rgba(246, 246, 246, 0.75)) drop-shadow(0 1px 0 rgba(246, 246, 246, 0.75)) drop-shadow(0 -1px 0 rgba(246, 246, 246, 0.75)); */
-    filter: none;
+    filter: none !important;
     transform: rotate(16deg) !important;
 }
 
@@ -64,6 +65,15 @@ html {
 #panels-container.right #switch {
     box-shadow: none;
 }
+
+/* Absolute position the panel so it doesn't resize the page.  -- Patched by floating panel setting */
+/* #panels-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: #030b0ee3;
+} */
 
 .color-behind-tabs-off .toolbar-mainbar > .button-toolbar > button:hover, .color-behind-tabs-off .toolbar-mainbar > .toolbar-group > .button-toolbar > button:hover, .color-behind-tabs-off .toolbar-mainbar > .button-toolbar > button:active, .color-behind-tabs-off .toolbar-mainbar > .toolbar-group > .button-toolbar > button:active {
     background-color: #040d15;
@@ -96,3 +106,10 @@ html {
 #browser .tab-position .tab.active {
     border-left: solid 2px #10626e;
 }
+
+/* make it so you can drag the window by the sidebar (for i3wm since I hide the titlebar)
+*/
+div#tabs-tabbar-container {
+    -webkit-app-region: drag;
+}
+

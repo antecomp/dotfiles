@@ -9,7 +9,6 @@
 ;; ============================================================================
 ;;
 ;;
-;;
 ;; ============================================================================
 ;; INDEX
 ;; ============================================================================
@@ -18,15 +17,13 @@
 ;;	- Modules
 ;; ============================================================================
 ;;
-;;
-;;
 ;; // CONF BEGIN //============================================================
-
+;;
 ;;=============================================================================
-;; Var Dec ====================================================================
+;; Var Dec ================================================================={{{
 ;;=============================================================================
 
-;; Per-device configuration
+;; {{{ Per-device configuration 
 [init]
 monitor = HDMI-0
 ipc = true
@@ -35,8 +32,9 @@ wm = i3
 battery = BAT1
 adapter = ADP1
 
+;; }}}
 
-
+;; {{{ Fonts 
 ;; [ Font Notes ]
 ;; 		When you change the bar size, you may need to adjust the nerd font size
 ;; 		Use a monospace nerd font to prevent cutoffs and other weird stuff.
@@ -51,8 +49,9 @@ nerd = NotoSansMono Nerd Font:style=Medium:size=14;3
 ;; Font 2 -- Smaller font used for icons/symbols
 icon = NotoSansMono Nerd Font:style=Medium:size=11;2
 
+;; }}}
 
-
+;; {{{ Colors 
 [colours]
 ;; // First two letters control transparency as a Hex //
 
@@ -78,13 +77,15 @@ pink = #FF77BF
 deepblue = #6560FF
 lightblue = #60FFF7
 
-;; =============================================================================
-;; Bar Config =================================================================
-;; =============================================================================
+;; }}}
+
+;; =========================================================================}}}
+;; Bar Config =============================================================={{{
+;; ============================================================================
 
 [bar/main]
 
-;; Modules -------------------------------------------------------------------- 
+;; Modules -----------------------------------------------------------------{{{
 ;;					 (switch comments for right to switch from spotify to cmus)
 
 modules-left = appmenu rsep i3 i3new
@@ -92,7 +93,8 @@ modules-center = time
 ;; modules-right = lsep cmus pulse lsep cpu memory battery lsep
 modules-right = lsep spotify pulse lsep cpu memory battery lsep
 
-;; Other stuff ----------------------------------------------------------------
+;; }}}
+;; Other stuff ---------------------------------------------------------{{{
 
 ;; Size/positioning
 bottom = false
@@ -116,7 +118,8 @@ padding-right = 0
 line-size = 1
 separator =
 
-;; APPLY VARIABLES, AVOID TOUCHING UNLESS NEEDED ------------------------------
+;; }}}
+;; APPLY VARIABLES, AVOID TOUCHING UNLESS NEEDED ---------------------------{{{
 
 ;; List of fonts
 font-0 = ${fonts.main}
@@ -132,12 +135,13 @@ background = ${colours.mainbg}
 tray-background = ${colours.mainbg}
 foreground = ${colours.mainc}
 line-color = ${colours.green}
+;; }}}
 
-;; ============================================================================
-;; Modules ====================================================================
+;; =========================================================================}}}<F5>
+;; Modules ================================================================={{{
 ;; ============================================================================
 
-;; Seperators -----------------------------------------------------------------
+;; Seperators --------------------------------------------------------------{{{
 
 [module/lsep]
 type = custom/text
@@ -152,9 +156,11 @@ content = "  "
 content-foreground = ${colours.mainc}
 content-background = ${colours.mainbg}
 
+;; }}}
 
-;; Main Modules --------------------------------------------------------------
+;; Main Modules ------------------------------------------------------------{{{
 
+;; {{{ Appmenu ///
 [module/appmenu]
 type = custom/menu
 
@@ -202,14 +208,14 @@ menu-3-2-exec = gnome-system-monitor >/dev/null 2>&1 &
 format = <label-toggle><menu>
 ; format-underline = #fff
 ;; label-open = "  "
-label-open = "%{A3:rofi -show drun -show-icons:}  %{A}"
+label-open = "%{A3:rofi -show drun:}  %{A}"
 label-close = "  "
 
 label-separator = "    "
 
-;; ----------------------------------------------------------------------------
+;; }}}
 
-
+;; {{{ window
 [module/window]
 type = internal/xwindow
 format-padding = 4
@@ -218,33 +224,38 @@ format-foreground = ${colours.altc}
 label = %title%
 label-maxlen = 15
 label-empty = "NAVI"
+;; }}}
 
+;; {{{ i3
 [module/i3]
 type =                          internal/i3
 format =                        <label-mode><label-state>
-index-sort =                    true
+index-sort =                    false
 wrapping-scroll =               false
 enable-click =                  true
 pin-workspaces = 		true
 
-label-focused = %index%
+label-focused = %name%
+label-focused-overline = ${colours.mainc}
 label-focused-padding = 3
 label-focused-font = 0
 
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-foreground = ${colours.gray}
 label-unfocused-padding = 3
 label-unfocused-font = 0
 
-label-visible = %index%
+label-visible = %name%
 label-visible-padding = 3
 label-visible-font = 0
 
-label-urgent = %index%
-label-urgent-underline = ${colours.light-red}
+label-urgent = %name%
+label-urgent-overline = ${colours.light-red}
 label-urgent-padding = 3
 label-urgent-font = 0
+;; }}}
 
+;; {{{ Time/date
 [module/time]
 type =                      internal/date
 interval =                  1
@@ -254,7 +265,9 @@ format = <label>
 label =                     "%{T-}%time%"
 format-foreground =         ${colours.mainc}
 format-background =         ${colours.mainbg}
+;; }}}
 
+;; {{{ cpu
 [module/cpu]
 type = internal/cpu
 interval = 0.5
@@ -277,7 +290,9 @@ format-prefix =
 format-prefix-foreground = ${colours.mainc}
 label = " %gb_used% "
 label-font = 0
+;; }}}
 
+;; {{{ date (not used)
 [module/date]
 type =                      internal/date
 interval =                  600
@@ -285,13 +300,17 @@ date =                      %m/%d/%Y
 label =                     "%{T-}  %date%"
 format-foreground =         ${colours.mainc}
 format-background =         ${colours.mainbg}
+;; }}}
 
+;; {{{ i3 new window
 [module/i3new]
 type =                      custom/text
 content-font =		    2
 content = 		    "%{T3}ﭝ%{T-}"
 click-left = ~/.i3nw/i3nw
+}}}
 
+;; {{{ Spotify
 [module/spotify]
 type = custom/script
 interval = 1
@@ -299,7 +318,9 @@ exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist} | {song}'
 click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 click-middle = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 click-right = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+}}}
 
+;; {{{ cmus
 [module/cmus]
 type = custom/script
 interval = 1
@@ -309,7 +330,9 @@ click-middle = cmus-remote --prev
 click-left = cmus-remote --pause
 scroll-up = cmus-remote --volume +5%
 scroll-down = cmus-remote --volume -5%
+;; }}}
 
+;; {{{ PulseAudio
 [module/pulse]
 type = internal/pulseaudio
 use-ui-max = true
@@ -346,8 +369,9 @@ click-right = pavucontrol
 ;;ramp-volume-18 = "%{T5}墳"
 ;;ramp-volume-19 = "%{T5}墳"
 ;;ramp-volume-20 = "%{T5}墳"
-;;
+;; }}}
 
+;; {{{ battery
 [module/battery]
 type = internal/battery
 
@@ -370,6 +394,10 @@ label-full = " CHARGE FULL "
 label-charging = " %{T3}%{T-}%percentage%% \\ %time%R "
 
 label-discharging = " %percentage%% \\ %time%R "
-;; ============================================================================
-;; CONF END ===================================================================
-;; ============================================================================
+;; }}}
+
+
+;; }}}
+
+;; =========================================================================}}}
+;; // CONF END // =============================================================

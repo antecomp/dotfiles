@@ -1,184 +1,103 @@
- configuration {
-sidebar-mode: true;
-modi: "run,drun,window";
-lines: 15;
-columns: 1; 
+configuration {
+	modi:				"drun";
+	font:				"Kiona 10";
+	display-drun: 			"";
+	sidebar-mode: 			true;
+	modi: "run,drun,window";
+ 	filebrowser {
+		  /** Directory the file browser starts in. */
+		  directory: "/home/omni";
+		  /**
+			* Sorting method. Can be set to:
+			*   - "name"
+			*   - "mtime" (modification time)
+			*   - "atime" (access time)
+			*   - "ctime" (change time)
+			*/
+		  sorting-method: "name";
+		  /** Group directories before files. */
+		  directories-first: true;
+   	}
 }
+
+@theme "/dev/null"
 
 * {
-   font:             "Kiona 18";  
-/*   font: 		"Trench 20"; */ 
-   blue:             #19B6EE;
-   darkblue:         #335280;
-   cyan:             #007aa6;
-   lightcyan:        #8bc9c5;
-   green:            #0e8420;
-   red:              #c7162b;
+	bg:				#030b0e;
+	fg:				#ffffff;
+	button:			#117396;
+    searchbar:		#030b0e;
+    searchtext:		#aaaaaa;
 
-   dark1:            #070709;
-   dark2:            #0b0c0e;
-   dark3:            #5D5D5D;
-   dark4:            #666666;
-
-   light1:           #F7F7F7;
-   divid-color:      #0f0f0f;
-
-   background-color: @dark1;
-   border-color:     @dark2;
-   winbord:	     @dark1;
-   text-color:       @dark3;
-   dark-text-color:  @dark4;
-   main-color:       @cyan;
-   highlight:        @light1;
-   urgent-color:     @red;
-   selected-color:   @lightcyan;
+	background-color:		@bg;
+	text-color:			@fg;
 }
 
-window {
-   background-color: @background-color;
-   width: 840px;
-   padding: 10px;
-   fullscreen: false;
-   border:  2px;
-   border-radius: 5px;
-   border-color: @winbord;
-/*    position: center; */
-/*    anchor: south; */
-   y-offset: 26px;
-   location: north;
-}
+window { width: 980px; }
 
-mainbox {
-   background-color: @background-color;
-   spacing:0px;
-}
+prompt { enabled: false; }
 
-message {
-   padding: 6px 10px;
-   background-color: @background-color;
-}
-
-textbox {
-   text-color: @text-color;
-   background-color:@background-color;
-}
-
-listview {
-   fixed-height: true;
-   dynamic: true;
-   scrollbar: false;
-   spacing: 0px;
-   padding: 1px 0px 10px 0px;
-   margin: 0px 0px 1px 0px;
-   background: @background-color;
-}
-
-element {
-   padding: 4px 10px;
-}
-
-element normal.normal {
-   padding: 0px 15px;
-   background-color: @background-color;
-   text-color: @dark-text-color;
-}
-
-element normal.urgent {
-   background-color: @background-color;
-   text-color: @urgent-color;
-}
-
-element normal.active {
-   background-color: @background-color;
-   text-color: @main-color;
-}
-
-element selected.normal {
-    background-color: @border-color;
-    padding: 0px 4px;
-    text-color:       @selected-color;
-}
-
-element selected.urgent {
-    background-color: @urgent-color;
-    text-color:       @background-color;
-}
-
-element selected.active {
-    background-color: @border-color;
-    text-color:       @green;
-}
-
-element alternate.normal {
-    background-color: @background-color;
-    text-color:       @dark-text-color;
-}
-
-element alternate.urgent {
-    background-color: @background-color;
-    text-color:       @urgent-color;
-}
-
-element alternate.active {
-    background-color: @background-color;
-    text-color:       @main-color;
-}
-
-scrollbar {
-   background-color: @background-color;
-   handle-color: @background-color;
-   handle-width: 0px;
-}
-
-mode-switcher {
-   background-color: @divid-color;
-}
-
-button {
-   background-color: @background-color;
-   text-color:       @text-color;
-}
-
-button selected {
-    text-color:       @main-color;
-}
-
-inputbar {
-   background-color: @background-color;
-   spacing: 0px;
-   children:   [ prompt,textbox-prompt-colon,entry,case-indicator ]; 
-}
-
-prompt {
-   padding:0px 10px;
-   background-color: @background-color;
-   text-color: @highlight;
+pfp {
+	padding:			50px;
+	width:				110px;
+	expand:				false;
+	border:				5px;
+    border-radius: 5px 2px 0px 0px;
+	border-color:			@bg;
+	background-image:               url("img/pfp.png", height);
 }
 
 entry {
-   padding:0px 6px;
-   background-color:@background-color;
-   text-color:@light1;
+	placeholder:			"Search...";
+	expand:                         true;
+	padding:                        10px 2% 10px 1%;
+	vertical-align:			0.5;
+	background-color:               @searchbar;
+	text-color:			@searchtext;
+        placeholder-color:              @button;
+	margin:				29px 0 29px 0;
+	border:				5px;
+    border-radius: 5px 7px 7px 25px;
+	border-color:			@bg;
 }
 
-case-indicator {
-   padding:6px 10px;
-   text-color:@main-color;
-   background-color:@background-color;
+inputbar {
+	children: 			[ pfp, entry ];
+	text-color:                     @fg;
+	expand:                         false;
+	spacing:			64px;
+	padding:			64px 64px 0 64px;
+	background-image:		url("img/banner.png", width);
 }
 
-#textbox-prompt-colon {
-	padding:0px 0px;
-    expand:     false;
-    /* String below is the text before the run input */
-    str:        ">";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @highlight;
-    background-color:@background-color;
+listview {
+	columns:                        2;
+	lines:	                        4;
+	cycle:                          true;
+	dynamic:                        true;
+	layout:                         vertical;
+	padding:			16px 32px 32px 32px;
 }
 
-/* Hide The "drun:" text */
-#prompt {
-	enabled: false;
+mainbox {
+	children:                       [ inputbar, listview ];
+	spacing:                       	2%;
+	layout:				horizontal;
 }
 
+element {
+	orientation:                    vertical;
+	padding:                        1.5% 0% 1.5% 0%;
+    border-radius: 5px 5px 5px 5px;
+}
+
+element-text {
+	expand:                         true;
+	vertical-align:                 0.1;
+	margin:                         0.5% 3% 0% 3%;
+    padding: 						0% 0% 0% -2.5%;
+	background-color:               inherit;
+        text-color:                     inherit;
+}
+
+element selected { background-color: @button; }

@@ -1,0 +1,187 @@
+/* global settings and color variables */
+/* NOTICE: COLOR VARS ARE STORED IN THE ETC CONFIG (FOR SOME REASON) */
+
+ configuration {
+sidebar-mode: true;
+modi: "run,drun,window";
+lines: 15;
+columns: 1; 
+}
+
+* {
+   font:             "Kiona 18";  
+/*   font: 		"Trench 20"; */ 
+   blue:             #19B6EE;
+   darkblue:         #335280;
+   cyan:             #007aa6;
+   lightcyan:        #8bc9c5;
+   green:            #0e8420;
+   red:              #c7162b;
+
+   dark1:            #03090e;
+   dark2:            #040c14;
+   dark3:            #5D5D5D;
+   dark4:            #666666;
+
+   light1:           #F7F7F7;
+   divid-color:      #0f0f0f;
+
+   background-color: @dark1;
+   border-color:     @dark2;
+   winbord:	     @dark1;
+   text-color:       @dark3;
+   dark-text-color:  @dark4;
+   main-color:       @cyan;
+   highlight:        @light1;
+   urgent-color:     @red;
+   selected-color:   @lightcyan;
+}
+
+window {
+   background-color: @background-color;
+   width: 840px;
+   padding: 10px;
+   fullscreen: false;
+   border:  2px;
+   border-radius: 10px;
+   border-color: @winbord;
+/*    position: center; */
+/*    anchor: south; */
+   y-offset: 26px;
+   location: north;
+}
+
+mainbox {
+   background-color: @background-color;
+   spacing:0px;
+}
+
+message {
+   padding: 6px 10px;
+   background-color: @background-color;
+}
+
+textbox {
+   text-color: @text-color;
+   background-color:@background-color;
+}
+
+listview {
+   fixed-height: true;
+   dynamic: true;
+   scrollbar: false;
+   spacing: 0px;
+   padding: 1px 0px 10px 0px;
+   margin: 0px 0px 1px 0px;
+   background: @background-color;
+}
+
+element {
+   padding: 4px 10px;
+}
+
+element normal.normal {
+   padding: 0px 15px;
+   background-color: @background-color;
+   text-color: @dark-text-color;
+}
+
+element normal.urgent {
+   background-color: @background-color;
+   text-color: @urgent-color;
+}
+
+element normal.active {
+   background-color: @background-color;
+   text-color: @main-color;
+}
+
+element selected.normal {
+    background-color: @border-color;
+    padding: 0px 4px;
+    text-color:       @selected-color;
+}
+
+element selected.urgent {
+    background-color: @urgent-color;
+    text-color:       @background-color;
+}
+
+element selected.active {
+    background-color: @border-color;
+    text-color:       @green;
+}
+
+element alternate.normal {
+    background-color: @background-color;
+    text-color:       @dark-text-color;
+}
+
+element alternate.urgent {
+    background-color: @background-color;
+    text-color:       @urgent-color;
+}
+
+element alternate.active {
+    background-color: @background-color;
+    text-color:       @main-color;
+}
+
+scrollbar {
+   background-color: @background-color;
+   handle-color: @background-color;
+   handle-width: 0px;
+}
+
+mode-switcher {
+   background-color: @divid-color;
+}
+
+button {
+   background-color: @background-color;
+   text-color:       @text-color;
+}
+
+button selected {
+    text-color:       @main-color;
+}
+
+inputbar {
+   background-color: @background-color;
+   spacing: 0px;
+   children:   [ prompt,textbox-prompt-colon,entry,case-indicator ]; 
+}
+
+prompt {
+   padding:0px 10px;
+   background-color: @background-color;
+   text-color: @highlight;
+}
+
+entry {
+   padding:0px 6px;
+   background-color:@background-color;
+   text-color:@light1;
+}
+
+case-indicator {
+   padding:6px 10px;
+   text-color:@main-color;
+   background-color:@background-color;
+}
+
+#textbox-prompt-colon {
+	padding:0px 0px;
+    expand:     false;
+    /* String below is the text before the run input */
+    str:        ">";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @highlight;
+    background-color:@background-color;
+}
+
+/* Hide The "drun:" text */
+#prompt {
+	enabled: false;
+}
+

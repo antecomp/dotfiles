@@ -1,0 +1,32 @@
+# Control Spotify With Mouse Keys
+bindsym button8 --whole-window exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym Shift+button8 --whole-window exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym button9 --whole-window exec --no-startup-id "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+#test
+bindsym $alt+button3 --whole-window exec /home/omni/mouse_id
+
+# [ cmus controls using mod+multimedia ]
+bindsym $mod+XF86AudioPlay exec cmus-remote --pause
+bindsym $mod+XF86AudioPause exec cmus-remote --pause
+bindsym $mod+XF86AudioNext exec cmus-remote --next
+bindsym $mod+XF86AudioPrev exec cmus-remote --prev
+bindsym $mod+XF86AudioRaiseVolume exec cmus-remote --vol +10%
+bindsym $mod+XF86AudioLowerVolume exec cmus-remote --vol -10%
+
+# [ Spotify Conky :) ]
+exec conky -c ~/.conkyspot
+
+# [ Screenlocker ]
+bindsym $mod+End exec --no-startup-id betterlockscreen --lock
+
+## [ Legacy Rofi search for files ]
+bindsym $mod+$alt+Shift+d exec ~/.prodscripts/rofiloc
+
+# [ Emoji Picker ]
+bindsym $mod+$alt+e exec unipicker --copy --command "rofi -dmenu"
+
+# [Dmenu Rename Workspace]
+bindsym $mod+Ctrl+n exec ~/.config/i3/workspacerename.sh
+
+exec ~/Warpinator/pmenu.sh
