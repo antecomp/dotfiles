@@ -16,7 +16,6 @@
 set $mod Mod4
 # [Set variable so L-Alt can also be used]
 set $alt Mod1
-
                                                                            #}}}
 # {{{ Misc Globals ------------------------------------------------------------
 # [Define font for dialogues]
@@ -493,6 +492,8 @@ exec polybar main
 exec conky
 # [ On-desktop system stats ]
 exec conky -c ~/.conkystat
+# [ CopyQ for saving clipboard history ]
+exec --no-startup-id copyq
 
                                                                            #}}}
 # {{{ [ WINDOW RULES ] ////////////////////////////////////////////////////////
@@ -508,6 +509,7 @@ for_window [class="Zim"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="(?i)xviewer"] floating enable
+for_window [class="(?i)copyq"] floating enable
 for_window [class="PacketTracer7"] floating enable
 for_window [title="Panel Preferences"] floating enable
 for_window [title="Developer Tools*"] floating enable
@@ -541,6 +543,9 @@ for_window [class="mpv"] move position center
 for_window [class="feh"] resize set height 70ppt
 for_window [class="feh"] resize set width 50ppt
 for_window [class="feh"] move position center
+
+# [ Sticky QMMP by default ]
+for_window [class="Qmmp"] sticky enable
 
                                                                            #}}}
                                                                            #}}}
@@ -587,6 +592,7 @@ bindsym $mod+$alt+n exec nemo --class FNEMO
 
 # [ Screenshot tool]
 bindsym $mod+F11 exec flameshot gui
+bindcode Shift+66 exec flameshot gui
 
 # [ Rofi Powermenu ]
 bindsym $mod+F2 exec ~/.config/rofi/powermenu/powermenu.sh
@@ -596,6 +602,13 @@ bindsym $mod+Shift+w exec winswitch
 
 # [ Launch rofi menu for renaming windows ]
 bindsym $mod+n exec ~/.prodscripts/roficus
+
+
+# [ Open Up CopyQ's Saved Items ]
+bindsym $mod+Ctrl+v exec copyq toggle
+
+# [ Open CopyQ Menu ]
+bindsym $mod+Shift+v exec copyq menu
 
 
                                                                            #}}}
@@ -617,6 +630,12 @@ bindsym $mod+Ctrl+space exec rofi -show run
 bindsym $mod+$alt+d exec ~/.prodscripts/rofidir
 ## [ Rofi search for files ]
 bindsym $mod+Shift+d exec rofi -show filebrowser
+
+## [ Rofi with CapsLock key ]
+exec --no-startup-id setxkbmap -option caps:escape
+bindcode 66 exec rofi -show drun -drun-match-feilds name #-icon-theme "Simply-Gray-Circles" -show-icons 
+bindcode $alt+66 exec rofi -show window 
+bindcode Ctrl+66 exec rofi -show run
 
                                                                            #}}}
 # {{{ [ Two-part (modes) ] ----------------------------------------------------
